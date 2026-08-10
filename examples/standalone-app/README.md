@@ -1,6 +1,6 @@
-# npm design system, non-Panda app
+# Standalone app
 
-A Next.js app that uses the shadcn design system without installing Panda. You import one CSS file and the React components. That's it.
+A Next.js app that uses the [shadcn/ui](https://ui.shadcn.com/) design system without installing Panda. You import one CSS file and the React components. That's it.
 
 Use this when a team wants the design system but doesn't run Panda themselves. They never see `panda.config.ts`, a build step, or a `@pandacss/*` dependency.
 

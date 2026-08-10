@@ -17,12 +17,12 @@ export default function Home() {
       </div>
 
       <ShowcaseHero
-        kicker="Panda CSS v2 · Design System Starter"
-        title="npm design system, no Panda in the app"
-        subtitle="This Next.js app has no Panda installed. It pulls the shadcn design system from npm, imports one CSS file, and renders the React components."
+        kicker="Panda CSS · Design system starter"
+        title="A design system, no Panda in your app"
+        subtitle="This Next.js app has no Panda installed. It uses the published design system — one CSS import and the React components."
       />
       <ShowcaseGallery />
-      <ShowcaseFooter label="npm DS · non-Panda app" />
+      <ShowcaseFooter label="Standalone app" />
     </div>
   )
 }

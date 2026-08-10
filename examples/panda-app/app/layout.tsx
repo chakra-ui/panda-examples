@@ -15,9 +15,9 @@ const body = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'shadcn × Panda — Design System Monorepo',
+  title: 'shadcn × Panda — Panda app',
   description:
-    'A shadcn/ui design system built on Panda CSS v2, consumed by a Next.js app in a pnpm + Turborepo monorepo.',
+    'A Next.js app that runs Panda and consumes a shadcn/ui design system published to npm through designSystem, extending its tokens.',
 }
 
 const noFlashTheme = `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.classList.toggle('dark',d)}catch(e){}})()`

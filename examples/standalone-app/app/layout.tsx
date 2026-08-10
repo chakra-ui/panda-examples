@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Space_Grotesk, Inter } from 'next/font/google'
-import './globals.css'
+import '@chakra-ui/shadcn-panda/styles.css'
+import './frame.css'
 
 const display = Space_Grotesk({
   subsets: ['latin'],
@@ -15,9 +16,9 @@ const body = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'shadcn × Panda — Design System Monorepo',
+  title: 'shadcn × Panda — standalone app',
   description:
-    'A shadcn/ui design system built on Panda CSS v2, consumed by a Next.js app in a pnpm + Turborepo monorepo.',
+    'A Next.js app with no Panda installed, using a shadcn/ui design system published to npm — prebuilt CSS and React components.',
 }
 
 const noFlashTheme = `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.classList.toggle('dark',d)}catch(e){}})()`

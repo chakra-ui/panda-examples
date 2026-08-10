@@ -2,7 +2,7 @@
   "name": "@chakra-ui/shadcn-panda",
   "version": "0.1.0",
   "type": "module",
-  "description": "shadcn/ui modeled as a Panda CSS v2 design system, shipped with `panda lib`.",
+  "description": "shadcn/ui modeled as a Panda CSS design system, shipped with `panda lib`.",
   "license": "MIT",
   "sideEffects": [
     "*.css"

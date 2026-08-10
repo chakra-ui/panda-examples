@@ -2,7 +2,6 @@ import { cx, css } from '../styled-system/css'
 import { page, container } from '../lib/frame'
 import { ThemeToggle } from '../components/theme-toggle'
 import { ShowcaseHero } from '../components/showcase-hero'
-import { ShowcaseExtend } from '../components/showcase-extend'
 import { ShowcaseGallery } from '../components/showcase-gallery'
 import { ShowcaseFooter } from '../components/showcase-footer'
 
@@ -50,20 +49,12 @@ export default function Home() {
       </div>
 
       <ShowcaseHero
-        kicker="Panda CSS v2 · Design System Starter"
-        title="npm design system, your own Panda"
-        subtitle="This app runs Panda and pulls the shadcn design system from npm through `designSystem`. It reuses every token and recipe, and adds its own on top — no fork."
+        kicker="Panda CSS · Design system starter"
+        title="Design system in a monorepo"
+        subtitle="One shadcn/ui design system, built with Panda's `panda lib`, shared across every app in a pnpm + Turborepo workspace. Decide once, use everywhere."
       />
-      <main
-        className={cx(
-          container,
-          css({ display: 'flex', flexDirection: 'column', gap: '5', paddingBottom: '5' }),
-        )}
-      >
-        <ShowcaseExtend />
-      </main>
       <ShowcaseGallery />
-      <ShowcaseFooter label="npm DS · Panda app" />
+      <ShowcaseFooter label="Design system monorepo" />
     </div>
   )
 }

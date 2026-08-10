@@ -1,6 +1,6 @@
-# npm design system, your own Panda
+# Panda app
 
-A Next.js app that runs Panda and pulls the shadcn design system from npm. You get the whole system through one config line, and you can add your own tokens on top without forking.
+A Next.js app that runs Panda and pulls the [shadcn/ui](https://ui.shadcn.com/) design system from npm. You get the whole system through one config line, and you can add your own tokens on top without forking.
 
 Use this when your app already uses Panda and you want to build on a shared design system — extend its tokens, add app-only recipes, keep full types.
 

@@ -30,7 +30,7 @@ export function ShowcaseFooter({ label }: { label: string }) {
           <img src="/panda-p.svg" alt="" className={css({ height: '20px', width: '20px' })} />
           {label}
         </span>
-        <span>Panda CSS v2 · shadcn</span>
+        <span>Panda CSS · shadcn</span>
       </div>
     </footer>
   )

@@ -1,6 +1,6 @@
 # @chakra-ui/shadcn-panda
 
-[shadcn/ui](https://ui.shadcn.com) modeled as a [Panda CSS](https://panda-css.com) v2 design system. Same components, same look, built at build time instead of shipped as source you paste in.
+[shadcn/ui](https://ui.shadcn.com/) modeled as a [Panda CSS](https://panda-css.com) design system. Same components, same look, built at build time instead of shipped as source you paste in.
 
 You get shadcn's tokens and components as a real package: semantic tokens with light and dark, recipes ported from shadcn's `cva` definitions, and thin React wrappers. Ship it once with `panda lib`; apps consume it through `designSystem` or as a prebuilt CSS file.
 

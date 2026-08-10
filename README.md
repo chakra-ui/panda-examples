@@ -15,15 +15,15 @@ examples/
 
 ## Examples
 
-Three ways to ship and consume a design system on Panda v2. Each one uses the same system — [shadcn/ui](https://ui.shadcn.com) modeled in Panda — so you can compare the setups directly.
+Three ways to ship and consume a design system on Panda. Each one uses the same system — [shadcn/ui](https://ui.shadcn.com/) modeled in Panda — so you can compare the setups directly.
 
 | Example | What it shows |
 | --- | --- |
-| [`design-system-monorepo`](examples/design-system-monorepo) | The design system and an app in one pnpm + Turborepo workspace. The app consumes the system through `designSystem`. |
-| [`npm-ds-non-panda-app`](examples/npm-ds-non-panda-app) | A Next.js app with no Panda installed. It imports the published system's CSS file and React components. |
-| [`npm-ds-panda-app`](examples/npm-ds-panda-app) | A Next.js app that runs Panda, pulls the published system through `designSystem`, and extends its tokens. |
+| [`monorepo`](examples/monorepo) | The design system and an app in one pnpm + Turborepo workspace. The app consumes the system through `designSystem`. |
+| [`standalone-app`](examples/standalone-app) | A Next.js app with no Panda installed. It installs the published system and renders its components — one CSS import. |
+| [`panda-app`](examples/panda-app) | A Next.js app that runs Panda, pulls the published system through `designSystem`, and extends its tokens. |
 
-The design system itself lives in the monorepo example at [`packages/ds`](examples/design-system-monorepo/packages/ds) and is published to npm as `@chakra-ui/shadcn-panda`. The two npm examples consume that published package.
+The design system itself lives in the monorepo example at [`packages/ds`](examples/monorepo/packages/ds) and is published to npm as `@chakra-ui/shadcn-panda`. The `standalone-app` and `panda-app` examples consume that published package.
 
 > `@chakra-ui/shadcn-panda` isn't on npm yet. The monorepo example runs today. To run the two npm examples before it's published, pack the design system locally — each example's README has the steps.
 

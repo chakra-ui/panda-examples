@@ -1,6 +1,6 @@
 # Design system in a monorepo
 
-A shadcn/ui design system built on **Panda CSS v2**, consumed by a **Next.js** app — all in one **pnpm + Turborepo** workspace.
+A [shadcn/ui](https://ui.shadcn.com/) design system built on **Panda CSS**, consumed by a **Next.js** app — all in one **pnpm + Turborepo** workspace.
 
 This is the "decide once, use everywhere" setup: the design system is a workspace package, and the app pulls it in through Panda's `designSystem` config. No copy-pasted components, no re-declared tokens.
 

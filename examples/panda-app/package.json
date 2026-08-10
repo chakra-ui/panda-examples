@@ -1,10 +1,12 @@
 {
-  "name": "npm-ds-non-panda-app",
+  "name": "panda-app",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
+    "predev": "panda build",
     "dev": "next dev",
+    "prebuild": "panda build",
     "build": "next build",
     "start": "next start"
   },
@@ -15,6 +17,8 @@
     "react-dom": "19.2.0"
   },
   "devDependencies": {
+    "@pandacss/dev": "2.0.0-beta.12",
+    "@pandacss/preset-base": "2.0.0-beta.12",
     "@types/node": "24.10.1",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
