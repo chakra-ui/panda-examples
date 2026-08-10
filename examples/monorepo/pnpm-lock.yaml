@@ -33,6 +33,9 @@ importers:
       '@pandacss/preset-base':
         specifier: 2.0.0-beta.12
         version: 2.0.0-beta.12
+      '@pandacss/preset-panda':
+        specifier: 2.0.0-beta.12
+        version: 2.0.0-beta.12
       '@types/node':
         specifier: 24.10.1
         version: 24.10.1
@@ -52,6 +55,9 @@ importers:
         specifier: 2.0.0-beta.12
         version: 2.0.0-beta.12(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(postcss@8.5.26)
       '@pandacss/preset-base':
+        specifier: 2.0.0-beta.12
+        version: 2.0.0-beta.12
+      '@pandacss/preset-panda':
         specifier: 2.0.0-beta.12
         version: 2.0.0-beta.12
       '@types/react':
@@ -390,6 +396,10 @@ packages:
 
   '@pandacss/preset-base@2.0.0-beta.12':
     resolution: {integrity: sha512-CA69QrdFjH1luxUkJDea7fxzBB7vaHxnHHrPmuhAHBeUnqQxJgV0kqKeq3MeOW63CCX3A0vIG933EMr37GbT2Q==}
+    engines: {node: '>=22'}
+
+  '@pandacss/preset-panda@2.0.0-beta.12':
+    resolution: {integrity: sha512-PBHJdaLzoxC7Tmn9bF9w2VlVb1ZOA8PjttylaCzqLN3SiIOSdhHxa5/vFKLuy+UhVCdemmnh/34g0ySRxDG0Yg==}
     engines: {node: '>=22'}
 
   '@pandacss/types@2.0.0-beta.12':
@@ -1128,6 +1138,10 @@ snapshots:
       - '@emnapi/runtime'
 
   '@pandacss/preset-base@2.0.0-beta.12':
+    dependencies:
+      '@pandacss/types': 2.0.0-beta.12
+
+  '@pandacss/preset-panda@2.0.0-beta.12':
     dependencies:
       '@pandacss/types': 2.0.0-beta.12
 

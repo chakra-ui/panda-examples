@@ -28,6 +28,14 @@ export default defineConfig({
 import { Button, Card } from '@chakra-ui/shadcn-panda'
 ```
 
+Install the base presets alongside it:
+
+```bash
+pnpm add -D @pandacss/preset-base @pandacss/preset-panda
+```
+
+The recipes are built on Panda's default scales (`h-9`, `text-sm`, spacing). This design system's exported preset references `@pandacss/preset-base` (utility mappings and conditions) and `@pandacss/preset-panda` (the token values) by name, so a Panda app that consumes it needs both installed to resolve them. You don't list them in your `presets` — `designSystem` pulls them in. Apps that use the prebuilt `styles.css` (below) don't need them.
+
 ## Use it without Panda
 
 Import the prebuilt stylesheet and the components. No Panda, no config.

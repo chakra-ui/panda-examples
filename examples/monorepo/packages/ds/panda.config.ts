@@ -17,7 +17,7 @@ import {
 } from './src/theme/recipes'
 
 export default defineConfig({
-  presets: ['@pandacss/preset-base'],
+  presets: ['@pandacss/preset-base', '@pandacss/preset-panda'],
   include: ['src/**/*.{ts,tsx}'],
   outdir: 'styled-system',
   jsxFramework: 'react',

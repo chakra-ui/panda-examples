@@ -18,6 +18,8 @@ export default defineConfig({
 
 Panda resolves the package's `panda/lib.json`, merges its tokens and recipes into your build, and applies its CSS. You import from your own local `styled-system`, same as any Panda app. The app only emits what it adds; the rest is reused, not copied.
 
+This app installs `@pandacss/preset-base` and `@pandacss/preset-panda` as dev dependencies. The design system's recipes are built on Panda's default scales (`h-9`, `text-sm`, spacing), and its exported preset references those two presets by name — so a consuming Panda app needs them installed to resolve them. You don't list them in `presets`; `designSystem` pulls them in.
+
 ### Extend, don't fork
 
 This app adds one token in its own config:
