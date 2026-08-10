@@ -2,7 +2,7 @@ import { defineConfig } from '@pandacss/dev'
 
 export default defineConfig({
   designSystem: '@chakra-ui/shadcn-panda',
-  include: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
+  include: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './lib/**/*.{ts,tsx}'],
   outdir: 'styled-system',
   jsxFramework: 'react',
   conditions: {
