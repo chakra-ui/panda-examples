@@ -34,7 +34,7 @@ for folder in "$root_dir"/examples/*/; do
     cd "$folder"
     pnpm install --ignore-workspace
     if pnpm run | grep -q '^  build$'; then
-      pnpm run build --if-present
+      pnpm run build
     fi
   ) || failures+=("$name")
 done
