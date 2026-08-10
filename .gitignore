@@ -1,0 +1,7 @@
+node_modules
+dist
+.next
+.turbo
+styled-system
+*.log
+.DS_Store
