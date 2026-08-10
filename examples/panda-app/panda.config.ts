@@ -5,6 +5,7 @@ export default defineConfig({
   include: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './lib/**/*.{ts,tsx}'],
   outdir: 'styled-system',
   jsxFramework: 'react',
+  preflight: true,
   conditions: {
     extend: {
       dark: '.dark &',
@@ -20,8 +21,8 @@ export default defineConfig({
           brand: { value: '#5b8def' },
         },
         fonts: {
-          display: { value: 'var(--font-display), ui-sans-serif, system-ui, sans-serif' },
-          body: { value: 'var(--font-body), ui-sans-serif, system-ui, sans-serif' },
+          display: { value: 'var(--font-display, ui-sans-serif), system-ui, sans-serif' },
+          body: { value: 'var(--font-body, ui-sans-serif), system-ui, sans-serif' },
         },
       },
       semanticTokens: {
@@ -34,6 +35,7 @@ export default defineConfig({
             eyebrow: { value: { base: '#A16207', _dark: '#FACC15' } },
             muted: { value: { base: '#6F6E66', _dark: '#A3A29B' } },
             teal: { value: { base: '#2AA79B', _dark: '#4FD1C5' } },
+            line: { value: { base: 'rgba(22, 21, 15, 0.1)', _dark: 'rgba(250, 248, 243, 0.12)' } },
           },
         },
       },

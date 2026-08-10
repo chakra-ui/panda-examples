@@ -15,9 +15,10 @@ export default function Home() {
           top: '0',
           zIndex: '10',
           backdropFilter: 'blur(8px)',
-          backgroundColor: 'color-mix(in oklab, {colors.frame.canvas} 78%, transparent)',
-          borderBottom: '1px solid',
-          borderColor: 'color-mix(in oklab, {colors.frame.ink} 8%, transparent)',
+          backgroundColor: 'color-mix(in oklab, var(--colors-frame-canvas) 78%, transparent)',
+          borderBottomWidth: '1px',
+          borderBottomStyle: 'solid',
+          borderBottomColor: 'frame.line',
         })}
       >
         <div
@@ -42,7 +43,7 @@ export default function Home() {
               color: 'frame.ink',
             })}
           >
-            <img src="/panda-p.svg" alt="" className={css({ height: '22px', width: '22px' })} />
+            <img src="/panda-badge.svg" alt="" className={css({ height: '24px', width: '24px', borderRadius: '6px' })} />
             shadcn × Panda
           </span>
           <ThemeToggle />

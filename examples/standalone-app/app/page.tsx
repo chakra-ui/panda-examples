@@ -9,7 +9,7 @@ export default function Home() {
       <div className="frame-header">
         <div className="frame-container frame-header-inner">
           <span className="frame-wordmark">
-            <img src="/panda-p.svg" alt="" style={{ height: 22, width: 22 }} />
+            <img src="/panda-badge.svg" alt="" style={{ height: 24, width: 24, borderRadius: 6 }} />
             shadcn × Panda
           </span>
           <ThemeToggle />
