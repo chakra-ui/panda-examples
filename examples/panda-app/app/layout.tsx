@@ -24,11 +24,11 @@ const noFlashTheme = `(function(){try{var t=localStorage.getItem('theme');var d=
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${display.variable} ${body.variable}`}>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: noFlashTheme }} />
       </head>
-      <body>{children}</body>
+      <body className={`${display.variable} ${body.variable}`}>{children}</body>
     </html>
   )
 }
