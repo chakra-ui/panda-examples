@@ -62,6 +62,7 @@
     "lib": "panda codegen && panda lib",
     "css": "panda cssgen --outfile dist/styles.css",
     "build": "pnpm codegen && pnpm lib && pnpm css",
+    "prepack": "pnpm build",
     "clean": "rm -rf dist styled-system"
   },
   "devDependencies": {

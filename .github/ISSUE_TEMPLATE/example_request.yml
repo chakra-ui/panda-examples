@@ -1,0 +1,23 @@
+name: 'Example request'
+description: 'Suggest a new example'
+labels: ['example']
+body:
+  - type: 'markdown'
+    attributes:
+      value: |
+        Thanks for the idea 💡! Tell us what example would help you adopt Panda.
+  - type: 'textarea'
+    id: 'example'
+    attributes:
+      label: 'What example?'
+      description: 'The framework, setup, or pattern you want to see.'
+      placeholder: 'A Vite + React app that consumes the design system through designSystem.'
+    validations:
+      required: true
+  - type: 'textarea'
+    id: 'why'
+    attributes:
+      label: 'Why is it useful?'
+      description: 'What would this unblock for you or your team?'
+    validations:
+      required: false
