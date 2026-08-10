@@ -49,6 +49,16 @@ import { Button } from '@chakra-ui/shadcn-panda'
 
 Class-based, like shadcn. Toggle `.dark` on `<html>` and the tokens flip.
 
+## Make it your own
+
+The source is small and readable — fork it and change what you need.
+
+- **Rebrand it.** Edit the color values in `src/theme/semantic-tokens.ts` (light + dark) and the radius scale in `src/theme/tokens.ts`. Every component picks up the change.
+- **Add a component.** Add a recipe in `src/theme/recipes.ts`, register it in `panda.config.ts`, and add a thin wrapper in `src/<name>/`. Export it from `src/index.ts`.
+- **Rename the package.** Change `name` in `package.json`; consumers point `designSystem` at the new name.
+
+Run `pnpm build` to regenerate the styled-system, the `panda lib` artifacts, and the prebuilt stylesheet.
+
 ## Components
 
 Button, Badge, Card, Input, Textarea, Label, Alert, Separator, Avatar, Skeleton, Switch, Tabs.
