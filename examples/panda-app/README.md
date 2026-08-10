@@ -45,16 +45,8 @@ pnpm dev
 
 `panda build` runs before `next dev`, generating `styled-system` and the stylesheet. Open http://localhost:3000 and toggle light/dark in the header.
 
-## Before it's on npm
+## The design system
 
-`@chakra-ui/shadcn-panda` isn't published yet, so `pnpm install` can't resolve `^0.1.0` on its own. To try this example against a local build:
+`@chakra-ui/shadcn-panda` isn't on npm. This example bundles it as a tarball (`chakra-ui-shadcn-panda-0.1.0.tgz`) and installs it with `file:`, so `pnpm install` works offline — the same as consuming a published package. `designSystem` resolves it from there.
 
-```bash
-# from packages/ds in the monorepo example
-pnpm build && pnpm pack
-
-# then in this example
-pnpm add ./chakra-ui-shadcn-panda-0.1.0.tgz
-```
-
-Once the package is on npm, `pnpm install` works as written.
+Inside this repo, run `pnpm run pack-ds` from the root after changing the design system to rebuild the tarball.

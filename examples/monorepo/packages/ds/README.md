@@ -4,18 +4,15 @@
 
 You get shadcn's tokens and components as a real package: semantic tokens with light and dark, recipes ported from shadcn's `cva` definitions, and thin React wrappers. Ship it once with `panda lib`; apps consume it through `designSystem` or as a prebuilt CSS file.
 
-## Install
+## Getting it
 
-```bash
-pnpm add @chakra-ui/shadcn-panda
-```
+This package isn't on npm. The [example apps](https://github.com/chakra-ui/panda-examples) bundle it as a tarball built with `panda lib`, so they install it offline with a `file:` dependency. Copy `packages/ds` into your own repo to make it yours, or run `pnpm pack` here to produce the tarball your apps install.
 
 ## Use it in a Panda app
 
-Point Panda at the package. It merges the tokens and recipes into your build.
+Point Panda at the package in your `panda.config.ts`. It merges the tokens and recipes into your build.
 
 ```ts
-// panda.config.ts
 import { defineConfig } from '@pandacss/dev'
 
 export default defineConfig({

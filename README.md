@@ -27,9 +27,9 @@ Three ways to ship and consume one design system — [shadcn/ui](https://ui.shad
 | [`standalone-app`](examples/standalone-app) | A Next.js app with **no Panda installed** — it imports the published CSS and React components.            | A team wants the components without running Panda. |
 | [`panda-app`](examples/panda-app)           | A Next.js app that runs Panda, pulls the published system through `designSystem`, and extends its tokens. | Your app uses Panda and builds on the system.      |
 
-The design system itself lives at [`examples/monorepo/packages/ds`](examples/monorepo/packages/ds) and publishes to npm as `@chakra-ui/shadcn-panda`. The other two consume that package.
+The design system itself lives at [`examples/monorepo/packages/ds`](examples/monorepo/packages/ds) as the `@chakra-ui/shadcn-panda` package. It isn't published to npm — the `standalone-app` and `panda-app` examples each **bundle it as a tarball**, so they install offline with no registry, exactly like consuming a published package.
 
-> **Not on npm yet.** `monorepo` runs today. To run `standalone-app` or `panda-app` before the package is published, pack the design system locally — each has the steps in its README.
+> After changing the design system, run `pnpm run pack-ds` to rebuild the bundled tarballs.
 
 ## Using an Example
 

@@ -12,7 +12,7 @@
     "format:check": "oxfmt --check ."
   },
   "dependencies": {
-    "@chakra-ui/shadcn-panda": "^0.1.0",
+    "@chakra-ui/shadcn-panda": "file:./chakra-ui-shadcn-panda-0.1.0.tgz",
     "next": "16.3.0",
     "react": "19.2.0",
     "react-dom": "19.2.0"

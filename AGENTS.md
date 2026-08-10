@@ -27,4 +27,4 @@ pnpm run check-examples  # install + build every example standalone
 pnpm install && pnpm dev
 ```
 
-The two npm examples depend on `@chakra-ui/shadcn-panda`, which isn't published yet. To run them locally, pack the design system (`pnpm -C examples/monorepo/packages/ds build && pnpm pack`) and install the tarball — see each example's README.
+`@chakra-ui/shadcn-panda` is not published to npm. `standalone-app` and `panda-app` bundle it as a tarball (`chakra-ui-shadcn-panda-0.1.0.tgz`) and install it with a `file:` dependency, so they work offline and stay degit-able. Run `pnpm run pack-ds` to rebuild the tarballs after changing the design system.

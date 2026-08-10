@@ -6,7 +6,8 @@
   "scripts": {
     "check-examples": "./scripts/check-examples.sh",
     "format": "oxfmt --write .",
-    "format:check": "oxfmt --check ."
+    "format:check": "oxfmt --check .",
+    "pack-ds": "./scripts/pack-ds.sh"
   },
   "devDependencies": {
     "oxfmt": "^0.63.0"
