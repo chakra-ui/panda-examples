@@ -1,0 +1,17 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "lib": {
+      "outputs": ["dist/**", "styled-system/**"]
+    },
+    "build": {
+      "dependsOn": ["^lib"],
+      "outputs": [".next/**", "!.next/cache/**", "styled-system/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["^lib"]
+    }
+  }
+}

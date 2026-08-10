@@ -13,10 +13,7 @@
     "src"
   ],
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    },
+    ".": "./src/index.ts",
     "./styles.css": "./dist/styles.css",
     "./panda/*": "./dist/panda/*",
     "./css": {
@@ -64,7 +61,7 @@
     "codegen": "panda codegen",
     "lib": "panda codegen && panda lib",
     "css": "panda cssgen --outfile dist/styles.css",
-    "build": "pnpm codegen && pnpm lib && pnpm css && tsup",
+    "build": "pnpm codegen && pnpm lib && pnpm css",
     "clean": "rm -rf dist styled-system"
   },
   "peerDependencies": {
@@ -75,7 +72,6 @@
     "@pandacss/preset-base": "2.0.0-beta.12",
     "@types/react": "19.2.7",
     "react": "19.2.0",
-    "tsup": "8.5.0",
     "typescript": "5.9.3"
   }
 }
