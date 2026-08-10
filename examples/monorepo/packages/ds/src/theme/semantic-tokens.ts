@@ -30,7 +30,7 @@ export const semanticTokens = defineSemanticTokens({
     },
     destructive: {
       DEFAULT: { value: { base: 'oklch(0.577 0.245 27.325)', _dark: 'oklch(0.704 0.191 22.216)' } },
-      foreground: { value: { base: 'oklch(0.985 0 0)', _dark: 'oklch(0.985 0 0)' } },
+      foreground: { value: { base: 'oklch(0.97 0.01 17)', _dark: 'oklch(0.58 0.22 27)' } },
     },
     border: { value: { base: 'oklch(0.922 0 0)', _dark: 'oklch(1 0 0 / 10%)' } },
     input: { value: { base: 'oklch(0.922 0 0)', _dark: 'oklch(1 0 0 / 15%)' } },

@@ -49,13 +49,11 @@ export const button = defineRecipe({
       default: {
         bg: 'primary',
         color: 'primary.foreground',
-        boxShadow: 'xs',
         _hover: { bg: alpha('--colors-primary', 90) },
       },
       destructive: {
         bg: 'destructive',
         color: 'white',
-        boxShadow: 'xs',
         _hover: { bg: alpha('--colors-destructive', 90) },
         _focusVisible: { boxShadow: `0 0 0 3px ${alpha('--colors-destructive', 20)}` },
         _dark: {
@@ -78,7 +76,6 @@ export const button = defineRecipe({
       secondary: {
         bg: 'secondary',
         color: 'secondary.foreground',
-        boxShadow: 'xs',
         _hover: { bg: alpha('--colors-secondary', 80) },
       },
       ghost: {
@@ -92,9 +89,25 @@ export const button = defineRecipe({
       },
     },
     size: {
-      default: { height: '9', paddingInline: '4', paddingBlock: '2' },
-      sm: { height: '8', borderRadius: 'md', gap: '1.5', paddingInline: '3' },
-      lg: { height: '10', borderRadius: 'md', paddingInline: '6' },
+      default: {
+        height: '9',
+        paddingInline: '4',
+        paddingBlock: '2',
+        '&:has(> svg)': { paddingInline: '3' },
+      },
+      sm: {
+        height: '8',
+        borderRadius: 'md',
+        gap: '1.5',
+        paddingInline: '3',
+        '&:has(> svg)': { paddingInline: '2.5' },
+      },
+      lg: {
+        height: '10',
+        borderRadius: 'md',
+        paddingInline: '6',
+        '&:has(> svg)': { paddingInline: '4' },
+      },
       icon: { width: '9', height: '9' },
     },
   },
@@ -135,6 +148,8 @@ export const badge = defineRecipe({
         _dark: { bg: alpha('--colors-destructive', 60) },
       },
       outline: { borderColor: 'border', color: 'foreground' },
+      ghost: { color: 'foreground' },
+      link: { color: 'primary', textUnderlineOffset: '4px' },
     },
   },
   defaultVariants: { variant: 'default' },
@@ -154,6 +169,15 @@ const field = {
   _placeholder: { color: 'muted.foreground' },
   _dark: { bg: alpha('--colors-input', 30) },
   '&::selection': { bg: 'primary', color: 'primary.foreground' },
+  '&::file-selector-button': {
+    display: 'inline-flex',
+    height: '7',
+    border: '0',
+    background: 'transparent',
+    fontSize: 'sm',
+    fontWeight: 'medium',
+    color: 'foreground',
+  },
   ...focusRing,
   ...ariaInvalid,
   _disabled: { pointerEvents: 'none', cursor: 'not-allowed', opacity: 0.5 },
@@ -178,6 +202,7 @@ export const textarea = defineRecipe({
     minHeight: '16',
     paddingInline: '3',
     paddingBlock: '2',
+    fieldSizing: 'content',
   },
 })
 
@@ -230,8 +255,6 @@ export const avatar = defineSlotRecipe({
     root: {
       position: 'relative',
       display: 'flex',
-      height: '8',
-      width: '8',
       flexShrink: 0,
       overflow: 'hidden',
       borderRadius: 'full',
@@ -248,8 +271,17 @@ export const avatar = defineSlotRecipe({
       bg: 'muted',
       color: 'muted.foreground',
       fontSize: 'sm',
+      '[data-size=sm] &': { fontSize: 'xs' },
     },
   },
+  variants: {
+    size: {
+      default: { root: { height: '8', width: '8' } },
+      sm: { root: { height: '6', width: '6' } },
+      lg: { root: { height: '10', width: '10' } },
+    },
+  },
+  defaultVariants: { size: 'default' },
 })
 
 export const switchRecipe = defineSlotRecipe({
@@ -260,8 +292,6 @@ export const switchRecipe = defineSlotRecipe({
     root: {
       display: 'inline-flex',
       alignItems: 'center',
-      height: '1.15rem',
-      width: '2rem',
       flexShrink: 0,
       borderRadius: 'full',
       borderWidth: '1px',
@@ -279,8 +309,6 @@ export const switchRecipe = defineSlotRecipe({
     thumb: {
       pointerEvents: 'none',
       display: 'block',
-      height: '1rem',
-      width: '1rem',
       borderRadius: 'full',
       bg: 'background',
       transition: 'transform 0.15s',
@@ -292,6 +320,19 @@ export const switchRecipe = defineSlotRecipe({
       },
     },
   },
+  variants: {
+    size: {
+      default: {
+        root: { height: '1.15rem', width: '2rem' },
+        thumb: { height: '1rem', width: '1rem' },
+      },
+      sm: {
+        root: { height: '0.875rem', width: '1.5rem' },
+        thumb: { height: '0.75rem', width: '0.75rem' },
+      },
+    },
+  },
+  defaultVariants: { size: 'default' },
 })
 
 export const card = defineSlotRecipe({
@@ -362,6 +403,10 @@ export const alert = defineSlotRecipe({
       minHeight: '1rem',
       fontWeight: 'medium',
       letterSpacing: '-0.01em',
+      display: '-webkit-box',
+      WebkitLineClamp: '1',
+      WebkitBoxOrient: 'vertical',
+      overflow: 'hidden',
     },
     description: {
       gridColumnStart: '2',

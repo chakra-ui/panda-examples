@@ -8,6 +8,7 @@ export type SwitchProps = Omit<ComponentProps<'button'>, 'onChange'> & {
   checked?: boolean
   defaultChecked?: boolean
   onCheckedChange?: (checked: boolean) => void
+  size?: 'default' | 'sm'
 }
 
 export function Switch({
@@ -16,12 +17,13 @@ export function Switch({
   defaultChecked,
   onCheckedChange,
   disabled,
+  size = 'default',
   ...props
 }: SwitchProps) {
   const [internal, setInternal] = useState(defaultChecked ?? false)
   const isChecked = checked ?? internal
   const state = isChecked ? 'checked' : 'unchecked'
-  const slots = switchRecipe()
+  const slots = switchRecipe({ size })
 
   return (
     <button
@@ -29,6 +31,7 @@ export function Switch({
       role="switch"
       aria-checked={isChecked}
       data-state={state}
+      data-size={size}
       data-slot="switch"
       disabled={disabled}
       className={cx(slots.root, className)}
