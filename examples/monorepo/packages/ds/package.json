@@ -1,16 +1,16 @@
 {
   "name": "@chakra-ui/shadcn-panda",
   "version": "0.1.0",
-  "type": "module",
   "description": "shadcn/ui modeled as a Panda CSS design system, shipped with `panda lib`.",
   "license": "MIT",
-  "sideEffects": [
-    "*.css"
-  ],
   "files": [
     "dist",
     "styled-system",
     "src"
+  ],
+  "type": "module",
+  "sideEffects": [
+    "*.css"
   ],
   "exports": {
     ".": "./src/index.ts",
@@ -64,9 +64,6 @@
     "build": "pnpm codegen && pnpm lib && pnpm css",
     "clean": "rm -rf dist styled-system"
   },
-  "peerDependencies": {
-    "react": ">=18"
-  },
   "devDependencies": {
     "@pandacss/dev": "2.0.0-beta.12",
     "@pandacss/preset-base": "2.0.0-beta.12",
@@ -74,5 +71,8 @@
     "@types/react": "19.2.7",
     "react": "19.2.0",
     "typescript": "5.9.3"
+  },
+  "peerDependencies": {
+    "react": ">=18"
   }
 }

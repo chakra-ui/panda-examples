@@ -15,7 +15,9 @@ export function CardTitle({ className, ...props }: ComponentProps<'div'>) {
 }
 
 export function CardDescription({ className, ...props }: ComponentProps<'div'>) {
-  return <div data-slot="card-description" className={cx(card().description, className)} {...props} />
+  return (
+    <div data-slot="card-description" className={cx(card().description, className)} {...props} />
+  )
 }
 
 export function CardAction({ className, ...props }: ComponentProps<'div'>) {

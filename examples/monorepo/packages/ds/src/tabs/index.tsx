@@ -19,7 +19,14 @@ export type TabsProps = ComponentProps<'div'> & {
   onValueChange?: (value: string) => void
 }
 
-export function Tabs({ className, defaultValue = '', value, onValueChange, children, ...props }: TabsProps) {
+export function Tabs({
+  className,
+  defaultValue = '',
+  value,
+  onValueChange,
+  children,
+  ...props
+}: TabsProps) {
   const [internal, setInternal] = useState(defaultValue)
   const current = value ?? internal
   const setValue = (next: string) => {
@@ -36,7 +43,9 @@ export function Tabs({ className, defaultValue = '', value, onValueChange, child
 }
 
 export function TabsList({ className, ...props }: ComponentProps<'div'>) {
-  return <div role="tablist" data-slot="tabs-list" className={cx(tabs().list, className)} {...props} />
+  return (
+    <div role="tablist" data-slot="tabs-list" className={cx(tabs().list, className)} {...props} />
+  )
 }
 
 export type TabsTriggerProps = ComponentProps<'button'> & { value: string }
@@ -63,5 +72,12 @@ export type TabsContentProps = ComponentProps<'div'> & { value: string }
 export function TabsContent({ className, value, ...props }: TabsContentProps) {
   const ctx = useTabs()
   if (ctx.value !== value) return null
-  return <div role="tabpanel" data-slot="tabs-content" className={cx(tabs().content, className)} {...props} />
+  return (
+    <div
+      role="tabpanel"
+      data-slot="tabs-content"
+      className={cx(tabs().content, className)}
+      {...props}
+    />
+  )
 }

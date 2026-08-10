@@ -22,17 +22,30 @@ export function ShowcaseExtend() {
           marginBottom: '5',
         })}
       >
-        This app adds one token, <code>colors.brand</code>, in its own{' '}
-        <code>panda.config.ts</code>. It sits right next to the design system's tokens — same
-        system, no fork. The swatch on the right is the app's; the one on the left ships from the
-        design system.
+        This app adds one token, <code>colors.brand</code>, in its own <code>panda.config.ts</code>.
+        It sits right next to the design system's tokens — same system, no fork. The swatch on the
+        right is the app's; the one on the left ships from the design system.
       </p>
       <div className={css({ display: 'flex', gap: '6', alignItems: 'center' })}>
-        <div className={css({ display: 'flex', flexDirection: 'column', gap: '2', alignItems: 'center' })}>
+        <div
+          className={css({
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '2',
+            alignItems: 'center',
+          })}
+        >
           <div className={cx(swatch, css({ backgroundColor: 'primary' }))} />
           <span className={css({ fontSize: '12px', color: 'frame.muted' })}>primary · DS</span>
         </div>
-        <div className={css({ display: 'flex', flexDirection: 'column', gap: '2', alignItems: 'center' })}>
+        <div
+          className={css({
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '2',
+            alignItems: 'center',
+          })}
+        >
           <div className={cx(swatch, css({ backgroundColor: 'brand' }))} />
           <span className={css({ fontSize: '12px', color: 'frame.muted' })}>brand · this app</span>
         </div>

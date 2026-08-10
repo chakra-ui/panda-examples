@@ -20,5 +20,7 @@ export function AvatarImage({ className, ...props }: ComponentProps<'img'>) {
 }
 
 export function AvatarFallback({ className, ...props }: ComponentProps<'span'>) {
-  return <span data-slot="avatar-fallback" className={cx(avatar().fallback, className)} {...props} />
+  return (
+    <span data-slot="avatar-fallback" className={cx(avatar().fallback, className)} {...props} />
+  )
 }

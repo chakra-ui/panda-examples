@@ -20,5 +20,7 @@ export function AlertTitle({ className, ...props }: ComponentProps<'div'>) {
 }
 
 export function AlertDescription({ className, ...props }: ComponentProps<'div'>) {
-  return <div data-slot="alert-description" className={cx(alert().description, className)} {...props} />
+  return (
+    <div data-slot="alert-description" className={cx(alert().description, className)} {...props} />
+  )
 }

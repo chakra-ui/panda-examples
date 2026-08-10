@@ -97,7 +97,9 @@ export function ShowcaseGallery() {
                 <AvatarFallback>DS</AvatarFallback>
               </Avatar>
               <Separator orientation="vertical" className={css({ height: '10' })} />
-              <div className={css({ display: 'flex', flexDirection: 'column', gap: '2', flex: '1' })}>
+              <div
+                className={css({ display: 'flex', flexDirection: 'column', gap: '2', flex: '1' })}
+              >
                 <Skeleton className={css({ height: '4', width: '70%' })} />
                 <Skeleton className={css({ height: '4', width: '45%' })} />
               </div>
@@ -116,10 +118,24 @@ export function ShowcaseGallery() {
                 <Label htmlFor="note">Note</Label>
                 <Textarea id="note" placeholder="Tell us what you're building…" />
               </div>
-              <label className={css({ display: 'flex', alignItems: 'center', gap: '2.5', fontSize: 'sm' })}>
+              <label
+                className={css({
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '2.5',
+                  fontSize: 'sm',
+                })}
+              >
                 <Switch defaultChecked /> Email me product updates
               </label>
-              <label className={css({ display: 'flex', alignItems: 'center', gap: '2.5', fontSize: 'sm' })}>
+              <label
+                className={css({
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '2.5',
+                  fontSize: 'sm',
+                })}
+              >
                 <Switch size="sm" /> Small switch
               </label>
             </div>

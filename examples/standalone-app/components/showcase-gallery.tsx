@@ -99,10 +99,14 @@ export function ShowcaseGallery() {
               <Label htmlFor="note">Note</Label>
               <Textarea id="note" placeholder="Tell us what you're building…" />
             </div>
-            <label style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', fontSize: '14px' }}>
+            <label
+              style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', fontSize: '14px' }}
+            >
               <Switch defaultChecked /> Email me product updates
             </label>
-            <label style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', fontSize: '14px' }}>
+            <label
+              style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', fontSize: '14px' }}
+            >
               <Switch size="sm" /> Small switch
             </label>
           </div>

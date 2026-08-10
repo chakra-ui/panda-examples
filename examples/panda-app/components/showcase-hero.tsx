@@ -23,12 +23,23 @@ export function ShowcaseHero({
         <img
           src="/logo-main.svg"
           alt="Panda CSS"
-          className={css({ height: '30px', width: 'auto', marginBottom: '9', _dark: { display: 'none' } })}
+          className={css({
+            height: '30px',
+            width: 'auto',
+            marginBottom: '9',
+            _dark: { display: 'none' },
+          })}
         />
         <img
           src="/logo-dark.svg"
           alt="Panda CSS"
-          className={css({ height: '30px', width: 'auto', marginBottom: '9', display: 'none', _dark: { display: 'block' } })}
+          className={css({
+            height: '30px',
+            width: 'auto',
+            marginBottom: '9',
+            display: 'none',
+            _dark: { display: 'block' },
+          })}
         />
         <span className={eyebrow}>{kicker}</span>
         <h1

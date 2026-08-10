@@ -1,0 +1,6 @@
+{
+  "singleQuote": true,
+  "semi": false,
+  "printWidth": 100,
+  "ignorePatterns": ["**/styled-system/**", "**/.next/**", "**/dist/**"]
+}

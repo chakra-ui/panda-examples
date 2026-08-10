@@ -43,7 +43,11 @@ export default function Home() {
               color: 'frame.ink',
             })}
           >
-            <img src="/panda-badge.svg" alt="" className={css({ height: '24px', width: '24px', borderRadius: '6px' })} />
+            <img
+              src="/panda-badge.svg"
+              alt=""
+              className={css({ height: '24px', width: '24px', borderRadius: '6px' })}
+            />
             shadcn × Panda
           </span>
           <ThemeToggle />

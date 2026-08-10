@@ -27,7 +27,4 @@ export {
   type TabsContentProps,
 } from './tabs'
 
-export {
-  button as buttonVariants,
-  badge as badgeVariants,
-} from '../styled-system/recipes'
+export { button as buttonVariants, badge as badgeVariants } from '../styled-system/recipes'

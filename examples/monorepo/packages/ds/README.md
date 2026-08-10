@@ -55,11 +55,11 @@ Button, Badge, Card, Input, Textarea, Label, Alert, Separator, Avatar, Skeleton,
 
 ## Exports
 
-| Entry | What it is |
-| --- | --- |
-| `.` | React components |
-| `./styles.css` | Prebuilt stylesheet (tokens, recipes, every variant) |
-| `./panda/*` | Machine artifacts for `designSystem` consumers |
-| `./css`, `./recipes`, `./tokens`, `./jsx` | Generated styled-system, for overlay re-exports |
+| Entry                                     | What it is                                           |
+| ----------------------------------------- | ---------------------------------------------------- |
+| `.`                                       | React components                                     |
+| `./styles.css`                            | Prebuilt stylesheet (tokens, recipes, every variant) |
+| `./panda/*`                               | Machine artifacts for `designSystem` consumers       |
+| `./css`, `./recipes`, `./tokens`, `./jsx` | Generated styled-system, for overlay re-exports      |
 
 See the [example apps](https://github.com/chakra-ui/panda-examples) for all three consumption paths.

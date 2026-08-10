@@ -28,7 +28,11 @@ export function ShowcaseFooter({ label }: { label: string }) {
         )}
       >
         <span className={css({ display: 'flex', alignItems: 'center', gap: '2.5' })}>
-          <img src="/panda-badge.svg" alt="" className={css({ height: '20px', width: '20px', borderRadius: '5px' })} />
+          <img
+            src="/panda-badge.svg"
+            alt=""
+            className={css({ height: '20px', width: '20px', borderRadius: '5px' })}
+          />
           {label}
         </span>
         <span>Panda CSS · shadcn</span>
