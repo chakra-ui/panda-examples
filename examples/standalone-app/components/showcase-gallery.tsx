@@ -70,11 +70,14 @@ export function ShowcaseGallery() {
 
         <Section label="Avatar · Separator · Skeleton">
           <div className="frame-row">
+            <Avatar size="sm">
+              <AvatarFallback>P</AvatarFallback>
+            </Avatar>
             <Avatar>
               <AvatarFallback>LP</AvatarFallback>
             </Avatar>
-            <Avatar>
-              <AvatarFallback>P</AvatarFallback>
+            <Avatar size="lg">
+              <AvatarFallback>DS</AvatarFallback>
             </Avatar>
             <Separator orientation="vertical" style={{ height: '2.5rem' }} />
             <div className="frame-stack" style={{ flex: 1 }}>
@@ -98,6 +101,9 @@ export function ShowcaseGallery() {
             </div>
             <label style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', fontSize: '14px' }}>
               <Switch defaultChecked /> Email me product updates
+            </label>
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', fontSize: '14px' }}>
+              <Switch size="sm" /> Small switch
             </label>
           </div>
         </Section>
