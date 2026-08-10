@@ -2,7 +2,6 @@
 
 import { useSyncExternalStore } from 'react'
 import { Switch } from '@chakra-ui/shadcn-panda'
-import { css } from '../styled-system/css'
 
 function subscribe(callback: () => void) {
   window.addEventListener('theme-change', callback)
@@ -27,18 +26,7 @@ export function ThemeToggle() {
   const dark = useSyncExternalStore(subscribe, isDark, () => false)
 
   return (
-    <label
-      className={css({
-        display: 'flex',
-        alignItems: 'center',
-        gap: '2.5',
-        fontSize: '13px',
-        fontWeight: 'medium',
-        color: 'frame.muted',
-        cursor: 'pointer',
-        userSelect: 'none',
-      })}
-    >
+    <label className="frame-toggle">
       {dark ? 'Dark' : 'Light'}
       <Switch checked={dark} onCheckedChange={setTheme} aria-label="Toggle dark mode" />
     </label>

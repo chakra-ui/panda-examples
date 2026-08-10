@@ -1,0 +1,253 @@
+:root {
+  --frame-canvas: #faf8f3;
+  --frame-ink: #16150f;
+  --frame-card: #efeee8;
+  --frame-brand: #facc15;
+  --frame-eyebrow: #a16207;
+  --frame-muted: #6f6e66;
+  --frame-teal: #2aa79b;
+  --frame-line: rgba(22, 21, 15, 0.1);
+}
+
+.dark {
+  --frame-canvas: #16150f;
+  --frame-ink: #faf8f3;
+  --frame-card: #232320;
+  --frame-eyebrow: #facc15;
+  --frame-muted: #a3a29b;
+  --frame-teal: #4fd1c5;
+  --frame-line: rgba(250, 248, 243, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--frame-canvas);
+  color: var(--frame-ink);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.frame-page {
+  min-height: 100dvh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.frame-container {
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .frame-container {
+    padding-inline: 2rem;
+  }
+}
+
+.frame-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  background-color: color-mix(in oklab, var(--frame-canvas) 78%, transparent);
+  border-bottom: 1px solid var(--frame-line);
+}
+
+.frame-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 0.75rem;
+}
+
+.frame-wordmark {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--frame-ink);
+}
+
+.frame-hero {
+  position: relative;
+  padding-top: 3.5rem;
+  padding-bottom: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .frame-hero {
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+  }
+}
+
+.frame-glow {
+  position: absolute;
+  top: -280px;
+  right: -160px;
+  width: 760px;
+  height: 760px;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in oklab, var(--frame-brand) 32%, transparent),
+    transparent
+  );
+  filter: blur(8px);
+}
+
+.frame-logo {
+  height: 30px;
+  width: auto;
+  margin-bottom: 2.25rem;
+}
+
+.frame-eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--frame-eyebrow);
+}
+
+.frame-title {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+  color: var(--frame-ink);
+  font-size: 42px;
+  margin: 1rem 0 0;
+  max-width: 18ch;
+}
+
+@media (min-width: 768px) {
+  .frame-title {
+    font-size: 68px;
+  }
+}
+
+.frame-subtitle {
+  margin-top: 1.25rem;
+  max-width: 52ch;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--frame-muted);
+}
+
+@media (min-width: 768px) {
+  .frame-subtitle {
+    font-size: 18px;
+  }
+}
+
+.frame-main {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.frame-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+  .frame-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.frame-card {
+  position: relative;
+  z-index: 1;
+  background-color: var(--frame-card);
+  border-radius: 20px;
+  padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .frame-card {
+    padding: 2rem;
+  }
+}
+
+.frame-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--frame-muted);
+  margin: 0 0 1.25rem;
+}
+
+.frame-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.frame-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.frame-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--frame-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.frame-footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--frame-line);
+  padding-block: 1.5rem;
+}
+
+.frame-footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--frame-muted);
+}
+
+.frame-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
