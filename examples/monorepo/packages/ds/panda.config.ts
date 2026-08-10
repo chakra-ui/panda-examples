@@ -21,6 +21,7 @@ export default defineConfig({
   include: ['src/**/*.{ts,tsx}'],
   outdir: 'styled-system',
   jsxFramework: 'react',
+  preflight: true,
   conditions: {
     extend: {
       dark: '.dark &',

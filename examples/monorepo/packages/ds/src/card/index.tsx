@@ -18,6 +18,10 @@ export function CardDescription({ className, ...props }: ComponentProps<'div'>) 
   return <div data-slot="card-description" className={cx(card().description, className)} {...props} />
 }
 
+export function CardAction({ className, ...props }: ComponentProps<'div'>) {
+  return <div data-slot="card-action" className={cx(card().action, className)} {...props} />
+}
+
 export function CardContent({ className, ...props }: ComponentProps<'div'>) {
   return <div data-slot="card-content" className={cx(card().content, className)} {...props} />
 }

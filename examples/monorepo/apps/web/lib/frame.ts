@@ -25,7 +25,7 @@ export const glow = css({
   pointerEvents: 'none',
   zIndex: '0',
   background:
-    'radial-gradient(closest-side, color-mix(in oklab, {colors.frame.brand} 32%, transparent), transparent)',
+    'radial-gradient(closest-side, color-mix(in oklab, var(--colors-frame-brand) 32%, transparent), transparent)',
   filter: 'blur(8px)',
 })
 

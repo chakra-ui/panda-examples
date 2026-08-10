@@ -7,8 +7,9 @@ export function ShowcaseFooter({ label }: { label: string }) {
       className={css({
         position: 'relative',
         zIndex: '1',
-        borderTop: '1px solid',
-        borderColor: 'color-mix(in oklab, {colors.frame.ink} 12%, transparent)',
+        borderTopWidth: '1px',
+        borderTopStyle: 'solid',
+        borderTopColor: 'frame.line',
         paddingBlock: '6',
       })}
     >
@@ -27,7 +28,7 @@ export function ShowcaseFooter({ label }: { label: string }) {
         )}
       >
         <span className={css({ display: 'flex', alignItems: 'center', gap: '2.5' })}>
-          <img src="/panda-p.svg" alt="" className={css({ height: '20px', width: '20px' })} />
+          <img src="/panda-badge.svg" alt="" className={css({ height: '20px', width: '20px', borderRadius: '5px' })} />
           {label}
         </span>
         <span>Panda CSS · shadcn</span>

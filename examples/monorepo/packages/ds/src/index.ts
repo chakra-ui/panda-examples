@@ -12,6 +12,7 @@ export {
   CardHeader,
   CardTitle,
   CardDescription,
+  CardAction,
   CardContent,
   CardFooter,
 } from './card'
