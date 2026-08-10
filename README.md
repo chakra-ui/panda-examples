@@ -13,6 +13,20 @@ examples/
     ...
 ```
 
+## Examples
+
+Three ways to ship and consume a design system on Panda v2. Each one uses the same system — [shadcn/ui](https://ui.shadcn.com) modeled in Panda — so you can compare the setups directly.
+
+| Example | What it shows |
+| --- | --- |
+| [`design-system-monorepo`](examples/design-system-monorepo) | The design system and an app in one pnpm + Turborepo workspace. The app consumes the system through `designSystem`. |
+| [`npm-ds-non-panda-app`](examples/npm-ds-non-panda-app) | A Next.js app with no Panda installed. It imports the published system's CSS file and React components. |
+| [`npm-ds-panda-app`](examples/npm-ds-panda-app) | A Next.js app that runs Panda, pulls the published system through `designSystem`, and extends its tokens. |
+
+The design system itself lives in the monorepo example at [`packages/ds`](examples/design-system-monorepo/packages/ds) and is published to npm as `@chakra-ui/shadcn-panda`. The two npm examples consume that published package.
+
+> `@chakra-ui/shadcn-panda` isn't on npm yet. The monorepo example runs today. To run the two npm examples before it's published, pack the design system locally — each example's README has the steps.
+
 ## Using an Example
 
 You don't need to clone the whole repo. Grab a single example with [`degit`](https://github.com/Rich-Harris/degit):
