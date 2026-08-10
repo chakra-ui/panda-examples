@@ -21,11 +21,11 @@ Three ways to ship and consume one design system — [shadcn/ui](https://ui.shad
 
 ![A shadcn design system built on Panda CSS, shown in the monorepo example](./assets/preview.png)
 
-| Example | You get | Use it when |
-| --- | --- | --- |
-| [`monorepo`](examples/monorepo) | The design system and a Next.js app in one pnpm + Turborepo workspace, wired with `designSystem`. | You build the system and the app together. |
-| [`standalone-app`](examples/standalone-app) | A Next.js app with **no Panda installed** — it imports the published CSS and React components. | A team wants the components without running Panda. |
-| [`panda-app`](examples/panda-app) | A Next.js app that runs Panda, pulls the published system through `designSystem`, and extends its tokens. | Your app uses Panda and builds on the system. |
+| Example                                     | You get                                                                                                   | Use it when                                        |
+| ------------------------------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| [`monorepo`](examples/monorepo)             | The design system and a Next.js app in one pnpm + Turborepo workspace, wired with `designSystem`.         | You build the system and the app together.         |
+| [`standalone-app`](examples/standalone-app) | A Next.js app with **no Panda installed** — it imports the published CSS and React components.            | A team wants the components without running Panda. |
+| [`panda-app`](examples/panda-app)           | A Next.js app that runs Panda, pulls the published system through `designSystem`, and extends its tokens. | Your app uses Panda and builds on the system.      |
 
 The design system itself lives at [`examples/monorepo/packages/ds`](examples/monorepo/packages/ds) and publishes to npm as `@chakra-ui/shadcn-panda`. The other two consume that package.
 
