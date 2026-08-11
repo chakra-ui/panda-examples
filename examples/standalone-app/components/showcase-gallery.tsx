@@ -22,7 +22,7 @@ import {
   TabsList,
   TabsTrigger,
   TabsContent,
-} from '@chakra-ui/shadcn-panda'
+} from 'pandacn'
 
 function Section({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -157,7 +157,7 @@ export function ShowcaseGallery() {
             </TabsList>
             <TabsContent value="css">
               <p style={{ fontSize: '14px', color: 'var(--frame-muted)', paddingTop: '0.75rem' }}>
-                Import <code>@chakra-ui/shadcn-panda/styles.css</code> once.
+                Import <code>pandacn/styles.css</code> once.
               </p>
             </TabsContent>
             <TabsContent value="components">

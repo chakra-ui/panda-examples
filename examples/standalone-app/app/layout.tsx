@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Space_Grotesk, Inter } from 'next/font/google'
-import '@chakra-ui/shadcn-panda/styles.css'
+import 'pandacn/styles.css'
 import './frame.css'
 
 const display = Space_Grotesk({

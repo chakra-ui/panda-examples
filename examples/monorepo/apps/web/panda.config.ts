@@ -1,7 +1,7 @@
 import { defineConfig } from '@pandacss/dev'
 
 export default defineConfig({
-  designSystem: '@chakra-ui/shadcn-panda',
+  designSystem: 'pandacn',
   include: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './lib/**/*.{ts,tsx}'],
   outdir: 'styled-system',
   jsxFramework: 'react',

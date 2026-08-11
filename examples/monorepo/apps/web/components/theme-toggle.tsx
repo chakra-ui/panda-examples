@@ -1,7 +1,7 @@
 'use client'
 
 import { useSyncExternalStore } from 'react'
-import { Switch } from '@chakra-ui/shadcn-panda'
+import { Switch } from 'pandacn'
 import { css } from '../styled-system/css'
 
 function subscribe(callback: () => void) {

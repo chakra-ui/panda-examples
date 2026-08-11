@@ -4,10 +4,12 @@ A [shadcn/ui](https://ui.shadcn.com/) design system built on **Panda CSS**, cons
 
 This is the "decide once, use everywhere" setup: the design system is a workspace package, and the app pulls it in through Panda's `designSystem` config. No copy-pasted components, no re-declared tokens.
 
+**The design system's source lives in [`packages/ds`](packages/ds).** That's the `pandacn` package — the same one the [`standalone-app`](../standalone-app) and [`panda-app`](../panda-app) examples consume. If you're wondering where those imports come from, it's here.
+
 ```
-design-system-monorepo/
+monorepo/
 ├─ packages/
-│  └─ ds/          @chakra-ui/shadcn-panda — tokens, recipes, React components
+│  └─ ds/          pandacn — the design system: tokens, recipes, React components
 └─ apps/
    └─ web/         Next.js App Router app that consumes the DS
 ```
@@ -20,13 +22,12 @@ design-system-monorepo/
 - `src/<component>/` — thin React wrappers over the generated recipes.
 - `panda lib` emits `dist/panda/lib.json` + a preset and syncs `package.json` exports.
 
-**`apps/web`** consumes it in one line:
+**`apps/web`** consumes it through its `panda.config.ts`:
 
 ```ts
-// apps/web/panda.config.ts
 export default defineConfig({
-  designSystem: '@chakra-ui/shadcn-panda',
-  // ...
+  designSystem: 'pandacn',
+  include: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
 })
 ```
 

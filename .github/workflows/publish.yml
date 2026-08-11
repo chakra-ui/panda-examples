@@ -1,0 +1,29 @@
+name: Publish pandacn
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ['pandacn-v*']
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install
+        run: pnpm install
+        working-directory: examples/monorepo
+
+      - name: Publish
+        run: pnpm publish --no-git-checks --access public
+        working-directory: examples/monorepo/packages/ds
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

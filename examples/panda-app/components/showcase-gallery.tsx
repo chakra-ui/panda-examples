@@ -22,7 +22,7 @@ import {
   TabsList,
   TabsTrigger,
   TabsContent,
-} from '@chakra-ui/shadcn-panda'
+} from 'pandacn'
 import { css, cx } from '../styled-system/css'
 import { container, sectionCard, sectionLabel, row } from '../lib/frame'
 

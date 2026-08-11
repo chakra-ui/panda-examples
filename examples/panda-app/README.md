@@ -6,13 +6,12 @@ Use this when your app already uses Panda and you want to build on a shared desi
 
 ## How it works
 
-Point Panda at the published design system:
+Point Panda at the published design system in your `panda.config.ts`:
 
 ```ts
-// panda.config.ts
 export default defineConfig({
-  designSystem: '@chakra-ui/shadcn-panda',
-  // ...
+  designSystem: 'pandacn',
+  include: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
 })
 ```
 
@@ -47,6 +46,4 @@ pnpm dev
 
 ## The design system
 
-`@chakra-ui/shadcn-panda` isn't on npm. This example bundles it as a tarball (`chakra-ui-shadcn-panda-0.1.0.tgz`) and installs it with `file:`, so `pnpm install` works offline — the same as consuming a published package. `designSystem` resolves it from there.
-
-Inside this repo, run `pnpm run pack-ds` from the root after changing the design system to rebuild the tarball.
+The design system is the [`pandacn`](https://npmx.dev/pandacn) package, installed from npm. Its source lives in [`examples/monorepo/packages/ds`](../monorepo/packages/ds). `designSystem: 'pandacn'` in `panda.config.ts` pulls its tokens and recipes into this app's build.

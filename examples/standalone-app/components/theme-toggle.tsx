@@ -1,7 +1,7 @@
 'use client'
 
 import { useSyncExternalStore } from 'react'
-import { Switch } from '@chakra-ui/shadcn-panda'
+import { Switch } from 'pandacn'
 
 function subscribe(callback: () => void) {
   window.addEventListener('theme-change', callback)

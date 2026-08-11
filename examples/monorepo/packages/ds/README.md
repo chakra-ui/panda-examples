@@ -1,4 +1,4 @@
-# @chakra-ui/shadcn-panda
+# pandacn
 
 [shadcn/ui](https://ui.shadcn.com/) modeled as a [Panda CSS](https://panda-css.com) design system. Same components, same look, built at build time instead of shipped as source you paste in.
 
@@ -6,7 +6,11 @@ You get shadcn's tokens and components as a real package: semantic tokens with l
 
 ## Getting it
 
-This package isn't on npm. The [example apps](https://github.com/chakra-ui/panda-examples) bundle it as a tarball built with `panda lib`, so they install it offline with a `file:` dependency. Copy `packages/ds` into your own repo to make it yours, or run `pnpm pack` here to produce the tarball your apps install.
+```bash
+pnpm add pandacn
+```
+
+The source lives in this repo at `examples/monorepo/packages/ds` — copy it into your own repo to make it yours. The [example apps](https://github.com/chakra-ui/panda-examples) show every way to consume it.
 
 ## Use it in a Panda app
 
@@ -16,13 +20,13 @@ Point Panda at the package in your `panda.config.ts`. It merges the tokens and r
 import { defineConfig } from '@pandacss/dev'
 
 export default defineConfig({
-  designSystem: '@chakra-ui/shadcn-panda',
+  designSystem: 'pandacn',
   include: ['./app/**/*.{ts,tsx}'],
 })
 ```
 
 ```tsx
-import { Button, Card } from '@chakra-ui/shadcn-panda'
+import { Button, Card } from 'pandacn'
 ```
 
 Install the base presets alongside it:
@@ -38,8 +42,8 @@ The recipes are built on Panda's default scales (`h-9`, `text-sm`, spacing). Thi
 Import the prebuilt stylesheet and the components. No Panda, no config.
 
 ```tsx
-import '@chakra-ui/shadcn-panda/styles.css'
-import { Button } from '@chakra-ui/shadcn-panda'
+import 'pandacn/styles.css'
+import { Button } from 'pandacn'
 ```
 
 ## Dark mode

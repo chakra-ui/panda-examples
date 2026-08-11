@@ -1,8 +1,20 @@
 {
-  "name": "@chakra-ui/shadcn-panda",
+  "name": "pandacn",
   "version": "0.1.0",
   "description": "shadcn/ui modeled as a Panda CSS design system, shipped with `panda lib`.",
+  "keywords": [
+    "design-system",
+    "panda-css",
+    "react",
+    "shadcn"
+  ],
+  "homepage": "https://github.com/chakra-ui/panda-examples/tree/main/examples/monorepo/packages/ds",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chakra-ui/panda-examples.git",
+    "directory": "examples/monorepo/packages/ds"
+  },
   "files": [
     "dist",
     "styled-system",
@@ -56,6 +68,9 @@
       "types": "./styled-system/helpers.d.ts",
       "default": "./styled-system/helpers.js"
     }
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "codegen": "panda codegen",

@@ -17,7 +17,7 @@ importers:
 
   apps/web:
     dependencies:
-      '@chakra-ui/shadcn-panda':
+      'pandacn':
         specifier: workspace:*
         version: link:../../packages/ds
       next:
