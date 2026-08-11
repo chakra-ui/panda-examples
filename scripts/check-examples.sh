@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-# Verifies every example under examples/ is self-contained: it must install
-# and build on its own, without relying on the repo root (no workspace,
-# no hoisted node_modules, no `workspace:*` deps).
 set -euo pipefail
 
 root_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -16,6 +13,17 @@ for folder in "$root_dir"/examples/*/; do
 
   echo "==> Checking example: $name"
 
+  if [ -f "$folder/pnpm-workspace.yaml" ]; then
+    (
+      cd "$folder"
+      pnpm install
+      if pnpm run | grep -q '^  build$'; then
+        pnpm run build
+      fi
+    ) || failures+=("$name")
+    continue
+  fi
+
   if grep -q "workspace:" "$folder/package.json"; then
     echo "    ✗ $name references a workspace:* dependency, which breaks standalone installs"
     failures+=("$name")
@@ -26,7 +34,7 @@ for folder in "$root_dir"/examples/*/; do
     cd "$folder"
     pnpm install --ignore-workspace
     if pnpm run | grep -q '^  build$'; then
-      pnpm run build --if-present
+      pnpm run build
     fi
   ) || failures+=("$name")
 done

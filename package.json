@@ -4,10 +4,16 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "check-examples": "./scripts/check-examples.sh"
+    "check-examples": "./scripts/check-examples.sh",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
+    "pack-ds": "./scripts/pack-ds.sh"
+  },
+  "devDependencies": {
+    "oxfmt": "^0.63.0"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=22"
   },
   "packageManager": "pnpm@10.15.0"
 }

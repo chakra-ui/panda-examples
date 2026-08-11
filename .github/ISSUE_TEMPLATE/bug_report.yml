@@ -1,0 +1,51 @@
+name: 'Bug report'
+description: 'Report a problem with an example'
+labels: ['bug']
+body:
+  - type: 'markdown'
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug 😄!
+
+        Please search open and closed issues first — someone may have hit this already.
+  - type: 'dropdown'
+    id: 'example'
+    attributes:
+      label: 'Which example?'
+      options:
+        - monorepo
+        - standalone-app
+        - panda-app
+        - Other / not sure
+    validations:
+      required: true
+  - type: 'textarea'
+    id: 'description'
+    attributes:
+      label: 'Description'
+      description: 'What went wrong?'
+      placeholder: |
+        When I ____, I expected ____ but ____ happened instead.
+    validations:
+      required: true
+  - type: 'textarea'
+    id: 'steps'
+    attributes:
+      label: 'Steps to reproduce'
+      value: |
+        1. Go to '...'
+        2. Run '...'
+        3. See the error
+    validations:
+      required: true
+  - type: 'textarea'
+    id: 'environment'
+    attributes:
+      label: 'Environment'
+      description: 'Node version, package manager, OS.'
+      placeholder: |
+        - Node: 22
+        - pnpm: 10
+        - OS: macOS 15
+    validations:
+      required: false

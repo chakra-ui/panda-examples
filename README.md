@@ -13,6 +13,24 @@ examples/
     ...
 ```
 
+## Examples
+
+### Design system on Panda
+
+Three ways to ship and consume one design system — [shadcn/ui](https://ui.shadcn.com/) modeled in Panda. Same tokens, same components, different delivery.
+
+![A shadcn design system built on Panda CSS, shown in the monorepo example](./assets/preview.png)
+
+| Example                                     | You get                                                                                                   | Use it when                                        |
+| ------------------------------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| [`monorepo`](examples/monorepo)             | The design system and a Next.js app in one pnpm + Turborepo workspace, wired with `designSystem`.         | You build the system and the app together.         |
+| [`standalone-app`](examples/standalone-app) | A Next.js app with **no Panda installed** — it imports the published CSS and React components.            | A team wants the components without running Panda. |
+| [`panda-app`](examples/panda-app)           | A Next.js app that runs Panda, pulls the published system through `designSystem`, and extends its tokens. | Your app uses Panda and builds on the system.      |
+
+The design system itself lives at [`examples/monorepo/packages/ds`](examples/monorepo/packages/ds) as the `@chakra-ui/shadcn-panda` package. It isn't published to npm — the `standalone-app` and `panda-app` examples each **bundle it as a tarball**, so they install offline with no registry, exactly like consuming a published package.
+
+> After changing the design system, run `pnpm run pack-ds` to rebuild the bundled tarballs.
+
 ## Using an Example
 
 You don't need to clone the whole repo. Grab a single example with [`degit`](https://github.com/Rich-Harris/degit):

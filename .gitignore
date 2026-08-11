@@ -5,3 +5,5 @@ dist
 styled-system
 *.log
 .DS_Store
+
+.ds-tarball/
