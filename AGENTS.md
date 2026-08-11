@@ -14,7 +14,7 @@ The design system source is `examples/monorepo/packages/ds/src` — tokens in `t
 
 - Examples are **standalone**: pinned dependency versions, no `workspace:*` (except the `monorepo` example, which is itself a workspace).
 - Format with **oxfmt** (`pnpm format`), not Prettier. Config in `.oxfmtrc.json` — single quotes, no semicolons.
-- Lint the Next apps with `pnpm lint` (eslint-config-next).
+- Lint the Next apps with `pnpm lint` (oxlint).
 - Do not edit generated output: `styled-system/`, `dist/`, `.next/`.
 
 ## Commands

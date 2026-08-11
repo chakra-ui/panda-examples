@@ -37,7 +37,7 @@ The shadcn design system lives in `examples/monorepo/packages/ds` and is publish
 
 - [pnpm](https://pnpm.io/) for packages.
 - [oxfmt](https://oxc.rs) for formatting (`.oxfmtrc.json` — single quotes, no semicolons).
-- [ESLint](https://eslint.org/) (`eslint-config-next`) for the Next apps.
+- [oxlint](https://oxc.rs/docs/guide/usage/linter) for linting the Next apps.
 
 ## Commands
 
