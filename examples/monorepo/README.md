@@ -22,13 +22,12 @@ monorepo/
 - `src/<component>/` — thin React wrappers over the generated recipes.
 - `panda lib` emits `dist/panda/lib.json` + a preset and syncs `package.json` exports.
 
-**`apps/web`** consumes it in one line:
+**`apps/web`** consumes it through its `panda.config.ts`:
 
 ```ts
-// apps/web/panda.config.ts
 export default defineConfig({
   designSystem: 'pandacn',
-  // ...
+  include: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
 })
 ```
 

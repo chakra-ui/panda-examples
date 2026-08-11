@@ -6,13 +6,12 @@ Use this when your app already uses Panda and you want to build on a shared desi
 
 ## How it works
 
-Point Panda at the published design system:
+Point Panda at the published design system in your `panda.config.ts`:
 
 ```ts
-// panda.config.ts
 export default defineConfig({
   designSystem: 'pandacn',
-  // ...
+  include: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
 })
 ```
 
