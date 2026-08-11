@@ -3,6 +3,9 @@ set -euo pipefail
 
 root_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 failures=()
+skipped=()
+
+pandacn_published="$(npm view pandacn version 2>/dev/null || true)"
 
 for folder in "$root_dir"/examples/*/; do
   name="$(basename "$folder")"
@@ -30,6 +33,12 @@ for folder in "$root_dir"/examples/*/; do
     continue
   fi
 
+  if grep -q '"pandacn"' "$folder/package.json" && [ -z "$pandacn_published" ]; then
+    echo "    – skipped: needs pandacn on npm"
+    skipped+=("$name")
+    continue
+  fi
+
   (
     cd "$folder"
     pnpm install --ignore-workspace
@@ -39,6 +48,11 @@ for folder in "$root_dir"/examples/*/; do
   ) || failures+=("$name")
 done
 
+if [ ${#skipped[@]} -ne 0 ]; then
+  echo ""
+  echo "Skipped (pandacn not yet on npm): ${skipped[*]}"
+fi
+
 if [ ${#failures[@]} -ne 0 ]; then
   echo ""
   echo "Failed examples: ${failures[*]}"
@@ -46,4 +60,4 @@ if [ ${#failures[@]} -ne 0 ]; then
 fi
 
 echo ""
-echo "All examples installed and built successfully."
+echo "All checked examples installed and built successfully."

@@ -8,7 +8,7 @@ importers:
 
   .:
     dependencies:
-      '@chakra-ui/shadcn-panda':
+      'pandacn':
         specifier: file:./chakra-ui-shadcn-panda-0.1.0.tgz
         version: file:chakra-ui-shadcn-panda-0.1.0.tgz(react@19.2.0)
       next:
@@ -112,7 +112,7 @@ packages:
     resolution: {integrity: sha512-Vj1jF3cPfxg7OAfoI7QnVKLoILlm2JF9pnVHrX8qx7AHMiYWT+NDAA7jChlNgRS4WTLc/fD1lXLmPixluj+3Gg==}
     engines: {node: '>=6.9.0'}
 
-  '@chakra-ui/shadcn-panda@file:chakra-ui-shadcn-panda-0.1.0.tgz':
+  'pandacn@file:chakra-ui-shadcn-panda-0.1.0.tgz':
     resolution: {integrity: sha512-1eZSNa6reVSAsLVEa3ag1Dh+faSYhMyUFhXh1PPepjZ1NrfWBUBAiranMcGU7jUDCKx8JGXS/O9UMa/n6H5R3Q==, tarball: file:chakra-ui-shadcn-panda-0.1.0.tgz}
     version: 0.1.0
     peerDependencies:
@@ -2021,7 +2021,7 @@ snapshots:
       '@babel/helper-string-parser': 7.29.7
       '@babel/helper-validator-identifier': 7.29.7
 
-  '@chakra-ui/shadcn-panda@file:chakra-ui-shadcn-panda-0.1.0.tgz(react@19.2.0)':
+  'pandacn@file:chakra-ui-shadcn-panda-0.1.0.tgz(react@19.2.0)':
     dependencies:
       react: 19.2.0
 

@@ -4,7 +4,7 @@ Panda CSS examples. Each folder under `examples/` is a standalone project you ca
 
 ## Layout
 
-- `examples/monorepo` — the design system (`packages/ds` = `@chakra-ui/shadcn-panda`) + a Next.js app, in a pnpm + Turborepo workspace.
+- `examples/monorepo` — the design system (`packages/ds` = `pandacn`) + a Next.js app, in a pnpm + Turborepo workspace.
 - `examples/standalone-app` — a Next.js app that consumes the published design system as prebuilt CSS + components, no Panda.
 - `examples/panda-app` — a Next.js app that runs Panda and consumes the design system via `designSystem`.
 
@@ -27,4 +27,4 @@ pnpm run check-examples  # install + build every example standalone
 pnpm install && pnpm dev
 ```
 
-`@chakra-ui/shadcn-panda` is not published to npm. `standalone-app` and `panda-app` bundle it as a tarball (`chakra-ui-shadcn-panda-0.1.0.tgz`) and install it with a `file:` dependency, so they work offline and stay degit-able. Run `pnpm run pack-ds` to rebuild the tarballs after changing the design system.
+The design system is published to npm as `pandacn`; its source is `examples/monorepo/packages/ds`. The `monorepo` example consumes it via `workspace:*`; `standalone-app` and `panda-app` install it from npm. Publishing runs from the `Publish pandacn` GitHub Action (or `pnpm -C examples/monorepo/packages/ds publish`).
