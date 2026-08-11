@@ -27,4 +27,4 @@ pnpm run check-examples  # install + build every example standalone
 pnpm install && pnpm dev
 ```
 
-`@chakra-ui/shadcn-panda` is not published to npm. `standalone-app` and `panda-app` bundle it as a tarball (`chakra-ui-shadcn-panda-0.1.0.tgz`) and install it with a `file:` dependency, so they work offline and stay degit-able. Run `pnpm run pack-ds` to rebuild the tarballs after changing the design system.
+`@chakra-ui/shadcn-panda` is not published to npm. `pnpm run pack-ds` builds it into a tarball (`chakra-ui-shadcn-panda-0.1.0.tgz`) that `standalone-app` and `panda-app` install with a `file:` dependency. The tarball is generated, never committed — run `pnpm run pack-ds` before installing those two examples (and again after changing the design system). `pnpm run check-examples` runs it for you.

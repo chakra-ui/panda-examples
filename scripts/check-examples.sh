@@ -4,6 +4,8 @@ set -euo pipefail
 root_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 failures=()
 
+"$root_dir/scripts/pack-ds.sh"
+
 for folder in "$root_dir"/examples/*/; do
   name="$(basename "$folder")"
 

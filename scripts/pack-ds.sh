@@ -2,9 +2,15 @@
 set -euo pipefail
 
 root_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-ds_dir="$root_dir/examples/monorepo/packages/ds"
+monorepo_dir="$root_dir/examples/monorepo"
+ds_dir="$monorepo_dir/packages/ds"
 tarball="chakra-ui-shadcn-panda-0.1.0.tgz"
 consumers=(standalone-app panda-app)
+
+if [ ! -x "$ds_dir/node_modules/.bin/panda" ]; then
+  echo "==> Installing the design system's dependencies"
+  pnpm -C "$monorepo_dir" install --silent
+fi
 
 echo "==> Packing @chakra-ui/shadcn-panda"
 rm -rf "$ds_dir/.pack"
@@ -16,4 +22,3 @@ for app in "${consumers[@]}"; do
 done
 
 rm -rf "$ds_dir/.pack"
-echo "Done. Re-run \`pnpm install\` in each consumer example to pick up the new build."

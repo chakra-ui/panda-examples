@@ -7,3 +7,5 @@ styled-system
 .DS_Store
 
 .ds-tarball/
+
+*.tgz

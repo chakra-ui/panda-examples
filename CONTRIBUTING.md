@@ -31,7 +31,7 @@ pnpm dev
 
 Every folder under `examples/` is its own project with pinned dependencies — no `workspace:*` (except the `monorepo` example, which is itself a workspace). You can copy any example out of the repo and it runs on its own.
 
-The shadcn design system lives in `examples/monorepo/packages/ds`. It isn't published to npm — the `standalone-app` and `panda-app` examples bundle it as a tarball and install it with a `file:` dependency. Run `pnpm run pack-ds` to rebuild the tarballs after changing the design system.
+The shadcn design system lives in `examples/monorepo/packages/ds`. It isn't published to npm — `pnpm run pack-ds` builds it into a tarball that the `standalone-app` and `panda-app` examples install with a `file:` dependency. The tarball is generated, never committed, so run `pnpm run pack-ds` before installing those two examples (and again after changing the design system).
 
 ## Tooling
 

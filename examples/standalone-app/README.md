@@ -6,17 +6,15 @@ Use this when a team wants the design system but doesn't run Panda themselves. T
 
 ## How it works
 
-The design system is published to npm with `panda lib`. That publish includes a prebuilt stylesheet (every token, recipe, and variant) and the React components.
-
-The app does two things:
+The design system is built with `panda lib` into a package that ships a prebuilt stylesheet (every token, recipe, and variant) and the React components. The app does two things — import the stylesheet in `app/layout.tsx`:
 
 ```tsx
-// app/layout.tsx
 import '@chakra-ui/shadcn-panda/styles.css'
 ```
 
+and render the components:
+
 ```tsx
-// app/page.tsx
 import { Button, Card, Badge } from '@chakra-ui/shadcn-panda'
 ```
 
@@ -26,15 +24,13 @@ The page frame (the cream canvas, the glow, the header) is plain CSS in `app/fra
 
 ## Run it
 
+The design system isn't on npm. This app installs it as a tarball built from `examples/monorepo/packages/ds`. Generate it once from the repo root, then run the app:
+
 ```bash
+pnpm run pack-ds
+cd examples/standalone-app
 pnpm install
 pnpm dev
 ```
 
-Open http://localhost:3000. Toggle light/dark in the header — the `.dark` class flips the shadcn tokens, same as shadcn's own theme.
-
-## The design system
-
-`@chakra-ui/shadcn-panda` isn't on npm. This example bundles it as a tarball (`chakra-ui-shadcn-panda-0.1.0.tgz`) and installs it with `file:`, so `pnpm install` works offline — the same as consuming a published package.
-
-Inside this repo, run `pnpm run pack-ds` from the root after changing the design system to rebuild the tarball.
+`pnpm run pack-ds` builds the design system and writes the tarball this example installs with a `file:` dependency — nothing is committed to the repo. Open http://localhost:3000 and toggle light/dark in the header; the `.dark` class flips the shadcn tokens, same as shadcn's own theme.

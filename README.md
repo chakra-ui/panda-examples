@@ -27,9 +27,9 @@ Three ways to ship and consume one design system — [shadcn/ui](https://ui.shad
 | [`standalone-app`](examples/standalone-app) | A Next.js app with **no Panda installed** — it imports the published CSS and React components.            | A team wants the components without running Panda. |
 | [`panda-app`](examples/panda-app)           | A Next.js app that runs Panda, pulls the published system through `designSystem`, and extends its tokens. | Your app uses Panda and builds on the system.      |
 
-The design system itself lives at [`examples/monorepo/packages/ds`](examples/monorepo/packages/ds) as the `@chakra-ui/shadcn-panda` package. It isn't published to npm — the `standalone-app` and `panda-app` examples each **bundle it as a tarball**, so they install offline with no registry, exactly like consuming a published package.
+The design system itself lives at [`examples/monorepo/packages/ds`](examples/monorepo/packages/ds) as the `@chakra-ui/shadcn-panda` package. It isn't published to npm. Instead, `pnpm run pack-ds` builds it into a tarball that the `standalone-app` and `panda-app` examples install with a `file:` dependency — the same as consuming a published package, without a registry.
 
-> After changing the design system, run `pnpm run pack-ds` to rebuild the bundled tarballs.
+> Run `pnpm run pack-ds` before installing those two examples (and again after changing the design system). The tarball is generated, never committed.
 
 ## Using an Example
 

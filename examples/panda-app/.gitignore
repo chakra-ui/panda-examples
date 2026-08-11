@@ -3,3 +3,5 @@ node_modules
 styled-system
 next-env.d.ts
 *.tsbuildinfo
+*.tgz
+pnpm-lock.yaml

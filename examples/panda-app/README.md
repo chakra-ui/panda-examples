@@ -38,15 +38,13 @@ theme: {
 
 ## Run it
 
+The design system isn't on npm. This app installs it as a tarball built from `examples/monorepo/packages/ds`. Generate it once from the repo root, then run the app:
+
 ```bash
+pnpm run pack-ds
+cd examples/panda-app
 pnpm install
 pnpm dev
 ```
 
-`panda build` runs before `next dev`, generating `styled-system` and the stylesheet. Open http://localhost:3000 and toggle light/dark in the header.
-
-## The design system
-
-`@chakra-ui/shadcn-panda` isn't on npm. This example bundles it as a tarball (`chakra-ui-shadcn-panda-0.1.0.tgz`) and installs it with `file:`, so `pnpm install` works offline — the same as consuming a published package. `designSystem` resolves it from there.
-
-Inside this repo, run `pnpm run pack-ds` from the root after changing the design system to rebuild the tarball.
+`pnpm run pack-ds` builds the design system and writes the tarball this example installs with a `file:` dependency — nothing is committed to the repo. `designSystem` resolves it from there. `panda build` runs before `next dev`, generating the local `styled-system` and stylesheet. Open http://localhost:3000 and toggle light/dark in the header.
