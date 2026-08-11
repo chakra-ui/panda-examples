@@ -6,10 +6,13 @@
   "scripts": {
     "check-examples": "./scripts/check-examples.sh",
     "format": "oxfmt --write .",
-    "format:check": "oxfmt --check ."
+    "format:check": "oxfmt --check .",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix"
   },
   "devDependencies": {
-    "oxfmt": "^0.63.0"
+    "oxfmt": "^0.63.0",
+    "oxlint": "^1.78.0"
   },
   "engines": {
     "node": ">=22"
