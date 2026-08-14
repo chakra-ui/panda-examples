@@ -10,6 +10,12 @@ Panda CSS examples. Each folder under `examples/` is a standalone project you ca
 
 The design system source is `examples/monorepo/packages/ds/src` — tokens in `theme/`, one folder per component.
 
+## Writing Panda
+
+Read [PANDA.md](PANDA.md) before writing styles. It covers the authoring API (`css()`, conditions, recipes, patterns, tokens), the v2-beta facts these examples rely on, and the mistakes to avoid. Each example also has its own `AGENTS.md` with wiring for that setup.
+
+Because each example is a standalone folder (people pull one with `degit`), every example carries its own copy of `PANDA.md` and `AGENTS.md`. They're duplicates on purpose. When you edit the copy here, update the ones under `examples/*/` too.
+
 ## Conventions
 
 - Examples are **standalone**: pinned dependency versions, no `workspace:*` (except the `monorepo` example, which is itself a workspace).
