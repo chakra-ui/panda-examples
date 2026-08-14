@@ -1,103 +1,142 @@
-# How to write Panda in these examples
+# Writing Panda without the usual mistakes
 
-This is what you need to write correct Panda here and stop guessing. The examples run Panda v2 (`2.0.0-beta.12`). The authoring API is the same as v1; what changed is the compiler and the way libraries ship and get consumed. Full docs are at <https://panda-css.com>. For the beta specifics, see the [v2 migration guide](https://github.com/chakra-ui/panda/blob/main/V2_MIGRATION.md).
+Read this before you write a line of Panda in these examples. It's the API and, more to the point, the mistakes that trip up anyone coming from Tailwind or Panda v1. The examples run Panda v2 (`2.0.0-beta.12`). Full docs: <https://panda-css.com>. Beta specifics: the [v2 migration guide](https://github.com/chakra-ui/panda/blob/main/V2_MIGRATION.md).
 
-Panda runs at build time. You write style objects, the CLI extracts them statically and generates atomic CSS plus a typed `styled-system/`. It can't see runtime values, so style with static ones.
+## The one rule behind most mistakes: styles must be static
 
-## Where to import from
+Panda reads your code at build time and generates CSS from what it can see. It runs no JavaScript. If a style value isn't a literal it can read at the call site, it generates nothing, and you get a `className` with no CSS behind it. No error, just a missing style.
 
-| You want | Import from |
-| --- | --- |
-| `css`, `cx`, `cva`, `sva` | local `styled-system/css` |
-| patterns (`stack`, `hstack`, `grid`, …) | local `styled-system/patterns` |
-| pattern JSX (`<Stack>`, `<Box>`) | local `styled-system/jsx` |
-| generated recipe functions | local `styled-system/recipes` |
-| the `token()` helper | local `styled-system/tokens` |
+```tsx
+// ❌ nothing is generated — the value isn't known at build time
+css({ color: props.color })
+css({ color: `red.${shade}` })
+css({ color: colorByType[type] })
 
-Always the local `styled-system`, the one this app's `panda build` generated. Never from the `pandacn` package. The `standalone-app` example has no `styled-system` at all; see its AGENTS.md.
-
-## Writing styles with css()
-
-```ts
-css({
-  display: 'flex',
-  px: '4', py: '2',              // shorthands; '4' is a spacing token
-  bg: 'primary',                 // token dot-path (a semantic token)
-  color: 'red.400',              // token dot-path (a scale token)
-  rounded: 'md',
-  width: '760px',                // arbitrary value, just a string
-  background: 'var(--colors-frame-brand)', // a raw CSS var when you need one
-})
+// ✅ literals, ternaries of literals, and same-file constants all work
+const accent = 'red.300'
+css({ color: accent })
+css({ color: isActive ? 'red.500' : 'red.600' })   // both classes emitted
 ```
 
-Token names resolve to CSS vars; arbitrary values pass straight through. To read a token in JS, use `token('colors.primary')`.
+When a value is genuinely dynamic, pick one of these:
 
-## Conditions: pseudo, state, and selectors
+```tsx
+// pick the class from a map of literals
+const byShade = { 300: css({ color: 'red.300' }), 500: css({ color: 'red.500' }) }
+<p className={byShade[shade]} />
 
-Underscore keys are conditions. String keys with `&` are raw selectors.
+// or hand Panda a CSS var and set it inline with token()
+<div className={css({ color: 'var(--c)' })} style={{ '--c': token(`colors.${props.color}`) }} />
+```
 
-```ts
+Or pre-generate variants with `staticCss` (see recipes below). The diagnostic for this is `panda_call_unextractable`.
+
+## Panda is not Tailwind
+
+There are no utility class strings. Style with objects through `css()`.
+
+```tsx
+// ❌ className="flex gap-4 hover:bg-red-500 md:px-5"
+// ✅
+className={css({ display: 'flex', gap: '4', _hover: { bg: 'red.500' }, px: { base: '4', md: '5' } })}
+```
+
+## Reference tokens by name, not by var
+
+A token is a bare dot-path. Not a CSS var, not `$name`, not `theme()`.
+
+```tsx
+// ❌ bg: 'var(--colors-red-400)'   ❌ bg: '$red.400'   ❌ bg: theme('colors.red.400')
+// ✅
+css({ bg: 'red.400', color: 'primary' })
+```
+
+Use a raw `var(...)` only when you're deliberately holding a runtime value (see the static rule above). `token('colors.red.300')` reads a token in JS; `token.var('colors.red.300')` gives its var reference.
+
+## The spacing scale: '4' is a token, '4px' is not
+
+Quoted scale steps hit the token scale. A raw length bypasses it.
+
+```tsx
+css({ p: '4' })     // ✅ spacing token spacing.4 → 1rem
+css({ p: '4px' })   // ✅ literal length, no token — only when you mean an exact pixel value
+```
+
+## Conditions use _hover, not :hover
+
+State and pseudo-classes are underscore keys. Raw child selectors need a literal `&`. Pseudo-element `content` must carry its own quotes.
+
+```tsx
+// ❌ ':hover': {…}   ❌ '&:hover': {…}   ❌ 'span': {…}   (missing &)
+// ✅
 css({
-  color: 'ink',
-  _hover: { color: 'brand' },
-  _focusVisible: { boxShadow: '0 0 0 3px …' },
+  _hover: { bg: 'red.700' },
   _disabled: { opacity: 0.5 },
-  _dark: { color: 'white' },
-  '& svg': { flexShrink: 0 },
-  '&[data-state=open]': { bg: 'card' },
+  '& span': { color: 'pink.400' },
+  _before: { content: '"👋"' },
 })
 ```
 
-Dark mode here is class-based. The configs set `conditions: { extend: { dark: '.dark &' } }`, so `_dark` means "somewhere under a `.dark` ancestor". Toggle `.dark` on `<html>`, and semantic tokens apply their `_dark` values on their own.
+Order matters: `_dark: { _backdrop: {…} }` is valid, the reverse isn't. Dark mode here is class-based: the configs set `dark: '.dark &'`, so `_dark` applies under a `.dark` ancestor. Toggle `.dark` on `<html>`; semantic tokens switch on their own.
 
-## Responsive styles
+## Responsive is an object, not md: prefixes
 
-Mobile-first, keyed by breakpoint (`base`, `sm`, `md`, `lg`, `xl`, `2xl`):
-
-```ts
-css({ paddingInline: { base: '5', md: '8' }, fontSize: { base: 'sm', lg: 'md' } })
+```tsx
+// ❌ className="md:px-5"   ❌ <Box md={{ px: '5' }} />
+// ✅ per property
+css({ px: { base: '4', md: '5' } })
+// ✅ or a breakpoint block
+css({ base: { px: '4' }, md: { px: '5' } })
 ```
 
-The array form `['5', '8']` maps to breakpoints in order. Prefer the object form; it says what it means.
+Breakpoints are `sm md lg xl 2xl`, mobile-first. On patterns, put the breakpoints on the pattern prop itself: `<Grid columns={{ base: 1, md: 2 }} />`.
+
+## Fading a color with /
+
+Append `/{n}` to a color token to mix in transparency.
+
+```tsx
+css({ bg: 'red.400/50' })                     // ✅ 50% via color-mix
+css({ '--overlay': '{colors.black/50}' })     // ✅ inside a var, wrap the token in braces
+```
 
 ## Combining classes with cx()
 
-`cx()` joins class strings and resolves atomic conflicts, last one wins. Reach for it in any component that takes a `className`:
+`cx()` joins class strings and resolves atomic conflicts, last one wins. Use it wherever a component takes a `className`:
 
-```ts
+```tsx
 cx(button({ variant, size }), css({ mt: '2' }), className)
 ```
 
-## Recipes for a single element
+## Recipes, and the dynamic-variant trap
 
-A recipe is variant-driven styling for one element. Author it with `defineRecipe`, register it in `panda.config.ts` under `theme.extend.recipes`, and Panda generates it into `styled-system/recipes`:
+A recipe is variant-driven styling for one element. Author it with `defineRecipe`, register it in `panda.config.ts` under `theme.extend.recipes`, and consume the generated function from `styled-system/recipes`:
 
 ```ts
 export const button = defineRecipe({
   className: 'btn',
-  jsx: ['Button'],
   base: { display: 'inline-flex', rounded: 'md' },
   variants: {
     variant: { default: { bg: 'primary' }, ghost: { bg: 'transparent' } },
     size: { sm: { h: '8' }, md: { h: '9' } },
   },
-  compoundVariants: [{ variant: 'ghost', size: 'sm', css: { px: '2' } }],
   defaultVariants: { variant: 'default', size: 'md' },
 })
 ```
 
-The generated function returns a class string:
+The same static rule applies to variant props:
 
 ```tsx
-import { button } from '../../styled-system/recipes'
-<button className={cx(button({ variant, size }), className)} />
+button({ size: 'lg' })               // ✅ emits lg
+button({ size: wide ? 'sm' : 'lg' }) // ✅ emits both
+button({ size })                     // ❌ runtime prop → only defaultVariants generated
 ```
 
-Inline `cva({...})` from `styled-system/css` works the same but is atomic, and it emits every variant. A config recipe is JIT: it only emits variants it sees used, so a dynamic prop like `button({ variant: someProp })` falls back to `defaultVariants` unless `staticCss` ships it. That's why these examples set `staticCss: { recipes: '*' }`. One more catch: `compoundVariants` turns off responsive and conditional variant props on a config recipe. The generated function also carries `.raw()`, `.variantKeys`, and `.splitVariantProps(props)`.
+Fix a genuinely dynamic prop with `staticCss` on the recipe (`staticCss: ['*']`, or list the variants). These examples set `staticCss: { recipes: '*' }` in the config for exactly this reason. Two more catches: `compoundVariants` disables responsive variant props on a config recipe, and inline `cva({...})` from `styled-system/css` never supports responsive variant props (it does emit every variant, though). Recipe functions also carry `.raw()`, `.variantKeys`, and `.splitVariantProps(props)`.
 
-## Recipes for multi-part components
+## Multi-part components use slot recipes
 
-For a component with several parts (a Card is root, header, title, and so on), use `defineSlotRecipe` and register it under `theme.extend.slotRecipes`. The generated function returns one class per slot:
+For a component with parts (a Card is root, header, title), use `defineSlotRecipe` under `theme.extend.slotRecipes`. The generated function returns one class per slot:
 
 ```ts
 export const card = defineSlotRecipe({
@@ -112,7 +151,7 @@ export const card = defineSlotRecipe({
 
 ## Layout patterns
 
-Patterns are prebuilt layout helpers: `stack`, `hstack`, `vstack`, `flex`, `grid`, `gridItem`, `box`, `center`, `circle`, `square`, `container`, `aspectRatio`, `bleed`, `float`, `spacer`, `divider`, `wrap`, `cq`, `linkOverlay`, `visuallyHidden`.
+Prebuilt layout helpers: `stack`, `hstack`, `vstack`, `flex`, `grid`, `gridItem`, `box`, `center`, `circle`, `square`, `container`, `aspectRatio`, `bleed`, `float`, `spacer`, `divider`, `wrap`, `cq`, `linkOverlay`, `visuallyHidden`.
 
 ```tsx
 import { stack } from '../styled-system/patterns'
@@ -122,11 +161,9 @@ import { Stack } from '../styled-system/jsx'
 <Stack gap="4" align="center" />
 ```
 
-Put breakpoints on the pattern prop itself (`columns={{ base: 1, md: 2 }}`), not in a separate condition block.
+## Defining tokens and semantic tokens
 
-## Tokens and semantic tokens
-
-Tokens are raw values. Semantic tokens resolve by condition, so they're how you do light and dark. Both nest under `{ value }`:
+Tokens are raw values; semantic tokens resolve by condition, which is how light and dark work. Both nest under `{ value }`:
 
 ```ts
 tokens: { colors: { brand: { value: '#5b8def' } }, fonts: { body: { value: 'Inter, sans-serif' } } }
@@ -136,32 +173,35 @@ semanticTokens: { colors: {
 } }
 ```
 
-Reference either by dot-path in `css()`: `bg: 'brand'`, `color: 'primary'`. A bare name resolves the token's `DEFAULT` key.
+Then reference by dot-path in `css()`: `bg: 'brand'`, `color: 'primary'`. A bare name resolves the token's `DEFAULT` key.
 
-## Composing styles across files with css.raw()
+## Where to import from
 
-`css.raw()` returns the style object instead of a class, so you can define styles in one file and compose them in another. v2 folds static named imports:
+Crossing these is a common mistake:
 
-```ts
-export const iconStyle = css.raw({ width: '4', flexShrink: 0 })   // styles.ts
-css(iconStyle, { color: 'currentColor' })                          // elsewhere
-css({ '& svg': { ...iconStyle } })                                 // spread into a selector
-```
+| You want | Import from |
+| --- | --- |
+| `css`, `cx`, `cva`, `sva`, `token`, `styled` | local `styled-system/*` (generated) |
+| patterns and pattern JSX | local `styled-system/patterns` and `styled-system/jsx` |
+| generated recipe functions | local `styled-system/recipes` |
+| `defineConfig`, `defineRecipe`, `defineSlotRecipe` | `@pandacss/dev` (config only) |
+
+Always the local `styled-system`, the one this app's `panda build` generated. Never runtime helpers from the `pandacn` package. The `standalone-app` example has no `styled-system` at all; see its AGENTS.md.
 
 ## v2 beta gotchas
 
-- ESM only, Node 22 or newer. No `require()`. `panda.config.ts` loads as ESM.
-- Presets aren't auto-injected. A config needs `presets: ['@pandacss/preset-base', '@pandacss/preset-panda']`, or `designSystem`, which pulls them in. Without them you get a bare system: no `bg`/`color` utilities, no scales, no `_hover`. Both preset packages have to be installed.
-- Re-run `panda build` after you change tokens, recipes, or patterns. These apps do it for you in `predev`/`prebuild`.
-- Don't edit `styled-system/`. It's generated, and your changes are overwritten.
-- `createStyleContext` is gone in v2. Use `createRecipeContext` for a `cva` recipe, `createSlotRecipeContext` for an `sva` one.
-- Extraction is static at the call site. A prop renamed or forwarded through a wrapper (`<Button size={circleSize} />`) isn't tracked. Keep real prop names; for arbitrary ones, pass `css.raw({...})`.
-- With `strictTokens` on, arbitrary values are rejected. Use the `[…]` escape hatch: `bg: '[#abc]'`, `fontSize: '[13px]'`. These examples don't turn it on.
+- ESM only, Node 22 or newer. No `require()`.
+- Presets aren't auto-injected. A config needs `presets: ['@pandacss/preset-base', '@pandacss/preset-panda']`, or `designSystem`, which pulls them in. Without them you get a bare system: no `bg`/`color`, no scales, no `_hover`. Both packages must be installed.
+- Run `panda build` after changing tokens, recipes, or patterns, and before `styled-system` types exist. These apps do it in `predev`/`prebuild`.
+- Don't edit `styled-system/`. It's generated and gets overwritten.
+- `!important` is a suffix on the value: `css({ color: 'red!' })`.
+- With `strictTokens` on, arbitrary values are rejected. Escape with brackets: `bg: '[#abc]'`, `fontSize: '[13px]'`. These examples don't turn it on.
+- `createStyleContext` is gone. Use `createRecipeContext` (cva) or `createSlotRecipeContext` (sva).
 
 ## Shipping and consuming the design system
 
-Here's how `pandacn` reaches the three apps. The `monorepo` example is the source.
+How `pandacn` reaches the three apps. The `monorepo` example is the source.
 
-- Shipping: `panda lib` builds `dist/panda/lib.json`, a `preset.mjs`, and build info, then syncs `package.json` exports. It bundles the whole system, every token, recipe, and variant, which is why the source sets `staticCss: { recipes: '*' }`.
-- Consuming with Panda: the app sets `designSystem: 'pandacn'` in `panda.config.ts`. Panda resolves `pandacn/panda/lib.json`, merges its preset, and the app emits only its own additions. You import from the app's local `styled-system`.
-- Consuming without Panda: import the prebuilt `pandacn/styles.css` and the React components. That's the `standalone-app` example.
+- Ship: `panda lib` builds `dist/panda/lib.json`, a `preset.mjs`, and build info, then syncs `package.json` exports. It bundles every token, recipe, and variant, which is why the source sets `staticCss: { recipes: '*' }`.
+- Consume with Panda: set `designSystem: 'pandacn'` in `panda.config.ts`. Panda merges its preset and the app emits only its own additions. Import from the app's local `styled-system`.
+- Consume without Panda: import the prebuilt `pandacn/styles.css` and the React components. That's the `standalone-app` example.
