@@ -15,7 +15,7 @@ css({ color: colorByType[type] })
 // ✅ literals, ternaries of literals, and same-file constants all work
 const accent = 'red.300'
 css({ color: accent })
-css({ color: isActive ? 'red.500' : 'red.600' })   // both classes emitted
+css({ color: isActive ? 'red.500' : 'red.600' }) // both classes emitted
 ```
 
 When a value is genuinely dynamic, pick one of these:
@@ -58,8 +58,8 @@ Use a raw `var(...)` only when you're deliberately holding a runtime value (see 
 Quoted scale steps hit the token scale. A raw length bypasses it.
 
 ```tsx
-css({ p: '4' })     // ✅ spacing token spacing.4 → 1rem
-css({ p: '4px' })   // ✅ literal length, no token — only when you mean an exact pixel value
+css({ p: '4' }) // ✅ spacing token spacing.4 → 1rem
+css({ p: '4px' }) // ✅ literal length, no token — only when you mean an exact pixel value
 ```
 
 ## Conditions use _hover, not :hover
@@ -96,8 +96,8 @@ Breakpoints are `sm md lg xl 2xl`, mobile-first. On patterns, put the breakpoint
 Append `/{n}` to a color token to mix in transparency.
 
 ```tsx
-css({ bg: 'red.400/50' })                     // ✅ 50% via color-mix
-css({ '--overlay': '{colors.black/50}' })     // ✅ inside a var, wrap the token in braces
+css({ bg: 'red.400/50' }) // ✅ 50% via color-mix
+css({ '--overlay': '{colors.black/50}' }) // ✅ inside a var, wrap the token in braces
 ```
 
 ## Combining classes with cx()
@@ -127,9 +127,9 @@ export const button = defineRecipe({
 The same static rule applies to variant props:
 
 ```tsx
-button({ size: 'lg' })               // ✅ emits lg
+button({ size: 'lg' }) // ✅ emits lg
 button({ size: wide ? 'sm' : 'lg' }) // ✅ emits both
-button({ size })                     // ❌ runtime prop → only defaultVariants generated
+button({ size }) // ❌ runtime prop → only defaultVariants generated
 ```
 
 Fix a genuinely dynamic prop with `staticCss` on the recipe (`staticCss: ['*']`, or list the variants). These examples set `staticCss: { recipes: '*' }` in the config for exactly this reason. Two more catches: `compoundVariants` disables responsive variant props on a config recipe, and inline `cva({...})` from `styled-system/css` never supports responsive variant props (it does emit every variant, though). Recipe functions also carry `.raw()`, `.variantKeys`, and `.splitVariantProps(props)`.
@@ -155,10 +155,10 @@ Prebuilt layout helpers: `stack`, `hstack`, `vstack`, `flex`, `grid`, `gridItem`
 
 ```tsx
 import { stack } from '../styled-system/patterns'
-<div className={stack({ gap: '4', align: 'center' })} />
+;<div className={stack({ gap: '4', align: 'center' })} />
 
 import { Stack } from '../styled-system/jsx'
-<Stack gap="4" align="center" />
+;<Stack gap="4" align="center" />
 ```
 
 ## Defining tokens and semantic tokens
@@ -179,12 +179,12 @@ Then reference by dot-path in `css()`: `bg: 'brand'`, `color: 'primary'`. A bare
 
 Crossing these is a common mistake:
 
-| You want | Import from |
-| --- | --- |
-| `css`, `cx`, `cva`, `sva`, `token`, `styled` | local `styled-system/*` (generated) |
-| patterns and pattern JSX | local `styled-system/patterns` and `styled-system/jsx` |
-| generated recipe functions | local `styled-system/recipes` |
-| `defineConfig`, `defineRecipe`, `defineSlotRecipe` | `@pandacss/dev` (config only) |
+| You want                                           | Import from                                            |
+| -------------------------------------------------- | ------------------------------------------------------ |
+| `css`, `cx`, `cva`, `sva`, `token`, `styled`       | local `styled-system/*` (generated)                    |
+| patterns and pattern JSX                           | local `styled-system/patterns` and `styled-system/jsx` |
+| generated recipe functions                         | local `styled-system/recipes`                          |
+| `defineConfig`, `defineRecipe`, `defineSlotRecipe` | `@pandacss/dev` (config only)                          |
 
 Always the local `styled-system`, the one this app's `panda build` generated. Never runtime helpers from the `pandacn` package. The `standalone-app` example has no `styled-system` at all; see its AGENTS.md.
 
