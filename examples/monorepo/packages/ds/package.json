@@ -1,6 +1,6 @@
 {
   "name": "pandacn",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "shadcn/ui modeled as a Panda CSS design system, shipped with `panda lib`.",
   "keywords": [
     "design-system",
