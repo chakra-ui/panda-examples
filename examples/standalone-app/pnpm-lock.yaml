@@ -12,8 +12,8 @@ importers:
         specifier: 16.3.0
         version: 16.3.0(@types/node@24.10.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       pandacn:
-        specifier: ^0.1.0
-        version: 0.1.0(react@19.2.0)
+        specifier: ^0.1.2
+        version: 0.1.2(react@19.2.0)
       react:
         specifier: 19.2.0
         version: 19.2.0
@@ -554,8 +554,8 @@ packages:
       vite-plus:
         optional: true
 
-  pandacn@0.1.0:
-    resolution: {integrity: sha512-ZBEql+ldYIupqT82cxdAE2XUh8ZhF8DkfpFQe1WcocIat9x+KELLf0nNNrB67YkggWln9ItYQ8qv5AgxqgGoPQ==}
+  pandacn@0.1.2:
+    resolution: {integrity: sha512-WilOqgpHLjywFly5O85l7IsFDD9lfPWu1YaNbEm2atXrjyOsGTOPR+foKjkI0cTM0IFalLcpShf9IcjBB63aqA==}
     peerDependencies:
       react: '>=18'
 
@@ -978,7 +978,7 @@ snapshots:
       '@oxlint/binding-win32-ia32-msvc': 1.78.0
       '@oxlint/binding-win32-x64-msvc': 1.78.0
 
-  pandacn@0.1.0(react@19.2.0):
+  pandacn@0.1.2(react@19.2.0):
     dependencies:
       react: 19.2.0
 
